@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { Cpu, Gpu, MemoryStick, HardDrive, LayoutDashboard, AppWindow, Computer, Cable, Wifi, UsersRound } from 'lucide-react'
+import { Cpu, Gpu, MemoryStick, HardDrive, LayoutDashboard, AppWindow, Computer, Cable, Wifi, UsersRound, Cog } from 'lucide-react'
 import "./App.css"
 
 const App = () => {
@@ -41,6 +41,10 @@ const App = () => {
     }
 
     loadData()
+
+    // const interval = setInterval(loadData, 1000);
+
+    // return () => clearInterval(interval)
     
   },[])
 
@@ -81,11 +85,24 @@ const App = () => {
             <p><strong>Distro</strong>: {dataJson.osInfo.distro}</p>
             <p><strong>Software Version</strong>: {dataJson.version}</p>
             <p><strong>Uefi Activated</strong>: {JSON.stringify(dataJson.osInfo.uefi)}</p> 
+            <p><strong>Virtual Machine</strong>: {String(dataJson.system.virtual)}</p>
           </div>
 
         </div>
 
         <h2>Hardware</h2>
+
+        <div className="general">
+          <span className="title"><h2 style={{color:'#242323'}}><Cog/> General</h2></span>
+
+          <div className="content">
+            <p style={{textAlign:'center'}}>{dataJson.system.version}</p>
+            <p><strong>Model</strong> {dataJson.system.model}</p>
+            <p><strong>Serial</strong> {dataJson.system.serial}</p>
+            <p><strong>UUID</strong> (Universally Unique Identifier) {dataJson.system.uuid}</p>
+          </div>
+
+        </div>
 
         <div className="mainboard">
 
@@ -127,6 +144,10 @@ const App = () => {
                 <p><strong>Vendor</strong>: {data.vendor}</p>
                 <p><strong>VRAM</strong>: {(data.vram).toFixed(0)} MB</p>
                 <p><strong>Dynamic VRAM</strong>: {JSON.stringify(data.vramDynamic)}</p>
+                <p><strong>Power Limit</strong>: {data.powerLimit} W</p>
+                <p><strong>{data.vendor} driver version</strong>: {data.driverVersion}</p>
+                <p><strong>Sub Device ID</strong>: {data.subDeviceId}</p>
+                <p><strong>Temperature</strong>: {data.temperatureGpu}</p>
               </div>
             ))}
           </div>
@@ -148,6 +169,12 @@ const App = () => {
                   <p><strong>Type</strong>: {data.type}</p>
                   <p><strong>Interface Type</strong>: {data.interfaceType}</p>
 
+                  <p>{data.bytesPerSector} Bytes per sector</p>
+                  <p>{data.sectorsPerTrack} Sector per track</p>
+
+                  <p><strong>Total Tracks:</strong> {data.totalTracks.toLocaleString()}</p>
+                  <p><strong>Total Sectors:</strong> {data.totalSectors.toLocaleString()}</p>
+
               </div>
             ))}
           </div>
@@ -162,10 +189,11 @@ const App = () => {
             {dataJson.memLayout.map((data: any,index: number)=>(
               <div key={index}>
                 <h3>{index + 1}</h3>
+                <p><strong>Slot placed in motherboard</strong>: {data.bank}</p>
                 <p><strong>Brand</strong>: {data.manufacturer}</p>
                 <p><strong>Type</strong>: {data.type}</p>
                 <p><strong>Size</strong>: {data.size / (1024 ** 2)} MB</p>
-                <p><strong>Frequency</strong> (Clock Speed): {data.clockSpeed} Mhz</p>
+                <p><strong>Frequency in use</strong> (Clock Speed): {data.clockSpeed} Mhz</p>
                 <p><strong>Form Factor</strong>: {data.formFactor}</p>
               </div>
             ))}
