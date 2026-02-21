@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { Cpu, Gpu, MemoryStick, HardDrive, LayoutDashboard, AppWindow, Computer, Cable, Wifi } from 'lucide-react'
+import { Cpu, Gpu, MemoryStick, HardDrive, LayoutDashboard, AppWindow, Computer, Cable, Wifi, UsersRound } from 'lucide-react'
 import "./App.css"
 
 const App = () => {
@@ -7,6 +7,9 @@ const App = () => {
   const [dataJson, seDataJson] = useState<any>(null)
   const [conectionType, setConectionType] = useState('')
   const [ipv, setIpv] = useState([])
+
+  const [InitError, setInitError] = useState(false)
+  const [errorMessage, setErrorMessage] = useState('')
 
   useEffect(()=>{
 
@@ -27,10 +30,13 @@ const App = () => {
         }
 
         seDataJson(data)
-        console.log(dataJson)
+        setInitError(false)
 
       } catch(error){
-        console.error("Erro: ",error)
+        console.error("Error: ",error)
+
+        setInitError(true)
+        setErrorMessage(error.message)
       }
     }
 
@@ -38,7 +44,13 @@ const App = () => {
     
   },[])
 
-  if(!dataJson) return <div className="loading">
+  if(InitError) return <div className="errorScreen">
+    <h2>Error</h2>
+    <p>{errorMessage}</p>
+    <h3>Check if server is running and restart the application!</h3>
+  </div>
+
+  if(!dataJson && !InitError) return <div className="loading">
     <h2>Loading PC Specs... </h2>
       <div className="loadingIcon"></div>
       <Computer/>
@@ -47,15 +59,18 @@ const App = () => {
   return (
     <main className="App">
 
-      <h1 className="titulo1">My PC Overview</h1>
-
-      <p>Welcome <strong>{dataJson.user.username}</strong>!</p>
-      <p>Users lenght: {dataJson.users.length}</p>
-      {dataJson.users.length > 1 && <p>Other users:</p>}
+      <h1 className="titulo1">MY PC OVERVIEW</h1>
 
       <h1><strong>{dataJson.osInfo.hostname}</strong> {dataJson.chassis.type} details: </h1>
 
       <div className="details">
+
+        <div className="users">
+          <span className="title"><h2 style={{color:'#000000'}}><UsersRound/> Users</h2></span>
+          <p>Welcome <strong>{dataJson.user.username}</strong>!</p>
+          <p>Users lenght in {dataJson.osInfo.hostname}: <strong>{dataJson.users.length}</strong></p>
+          {dataJson.users.length > 1 && <p>Other users:</p>}
+        </div>
 
         <div className="software">
 
