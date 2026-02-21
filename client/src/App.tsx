@@ -43,7 +43,7 @@ const App = () => {
   return (
     <main className="App">
 
-      <h1 className="titulo1">My PC Status</h1>
+      <h1 className="titulo1">My PC Overview</h1>
 
       <p>Welcome <strong>{dataJson.user.username}</strong>!</p>
       <p>Users lenght: {dataJson.users.length}</p>
