@@ -5,8 +5,8 @@ import "./App.css"
 const App = () => {
 
   const [dataJson, seDataJson] = useState<any>(null)
-  const [conectionType, setConectionType] = useState('')
-  const [ipv, setIpv] = useState([])
+  const [conectionType, setConectionType] = useState<string>('')
+  const [ipv, setIpv] = useState<any[]>([])
 
   const [InitError, setInitError] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
@@ -23,7 +23,7 @@ const App = () => {
           throw new Error(`Erro HTTP: ${response.status}`);
         }
 
-        const active = Object.values(data.networkInterfaces).find((iface: any) => iface.default);
+        const active = Object.values(data.networkInterfaces).find((iface: any) => iface.default) as any;
         if (active) {
           setConectionType(active.type);
           setIpv([active.ip4, active.ip6])
@@ -32,7 +32,7 @@ const App = () => {
         seDataJson(data)
         setInitError(false)
 
-      } catch(error){
+      } catch(error: any){
         console.error("Error: ",error)
 
         setInitError(true)

@@ -1,11 +1,25 @@
 {
+  "name": "My PC Overview",
+  "version": "0.0.0",
+  "main": "app.js",
+  "bin": "app.js",
+  "pkg": {
+    "assets": [
+      "client/**/*"
+    ]
+  },
   "dependencies": {
     "cors": "^2.8.6",
     "express": "^5.2.1",
+    "open": "^8.4.2",
     "systeminformation": "^5.31.1"
   },
   "scripts": {
     "start": "node app.js",
-    "dev": "nodemon app.js"
+    "dev": "nodemon app.js",
+    "build-exe": "pkg . --targets node18-win-x64 --output dist/monitor-pc"
+  },
+  "devDependencies": {
+    "pkg": "^5.8.1"
   }
 }
