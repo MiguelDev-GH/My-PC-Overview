@@ -61,7 +61,7 @@ const App = () => {
 
       <h1 className="titulo1">MY PC OVERVIEW</h1>
 
-      <h1><strong>{dataJson.osInfo.hostname}</strong> {dataJson.chassis.type} details: </h1>
+      <h1 className="titulo2"><strong>{dataJson.osInfo.hostname}</strong> {dataJson.chassis.type} details: </h1>
 
       <div className="details">
 

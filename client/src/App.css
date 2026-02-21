@@ -20,7 +20,7 @@ body{
 .App{
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
 }
 
@@ -69,10 +69,23 @@ body{
 }
 
 .titulo1{
+  position: relative;
   text-align: center;
   font-family: "Josefin Sans", sans-serif;
   font-weight: 800;
-  font-size: clamp(2rem,3rem,4rem);
+  font-size: clamp(1rem,3rem,4rem);
+  text-shadow: #d0d0d0 0 0 4px;
+  background-color: #1d3a4d;
+  background: linear-gradient(to bottom,#1d3a4d , #284B63);
+  box-sizing: border-box;
+  margin: 0;
+  width: 100%;
+  padding: 50px 0;
+}
+
+.titulo2{
+  text-align: center;
+  font-weight: 500;
 }
 
 .title{
@@ -85,7 +98,7 @@ body{
   position: relative;
 
   display: grid;
-  grid-template-columns: repeat(3,auto);
+  grid-template-columns: repeat(3,1fr);
 
   width: 80%;
   gap: 10px;
@@ -148,3 +161,32 @@ body{
   opacity: .5;
 }
 
+@media screen and (max-width: 1024px) {
+
+  .titulo1{
+    padding: 30px 20px;
+  }
+
+  .details{
+    grid-template-columns: 1fr;
+    width: 95%;
+    box-sizing: border-box;
+  }
+
+  .details > div,
+  .cpu, .users, .software, .connection, .disks, .memory, .gpu, .details > h2 {
+    grid-column: span 1 !important;
+    width: 100%; /* Garante que o card ocupe apenas a largura da coluna */
+    box-sizing: border-box;
+    word-wrap: break-word; /* Força a quebra de palavras longas */
+    overflow-wrap: break-word;
+    padding: 0 10px;
+  }
+
+  /* Ajuste para o conteúdo da conexão que você colocou como row anteriormente */
+  .connection .content {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+}
