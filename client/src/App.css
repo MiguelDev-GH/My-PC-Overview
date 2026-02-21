@@ -32,6 +32,7 @@ body{
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 10px;
 }
 
 .loadingIcon{
@@ -41,6 +42,7 @@ body{
   background: rgba(0,0,0,0);
   border: 25px dashed rgba(95, 158, 160, 0.449);
   animation: loadingAnimation 2s infinite ease-in-out;
+  padding-bottom: 10px;
 }
 
 @keyframes loadingAnimation {
@@ -56,7 +58,6 @@ body{
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #353535;
 }
 
 .details{
@@ -75,11 +76,16 @@ body{
 
 .details > div{
   border-bottom: #3C6E71 solid 2px;
-  border-radius: 5px;
+  border-radius: 10px;
   display: flex;
   flex-direction: column;
   background-color: #d0d0d0;
   padding: 5px 20px;
+  transition: all .1s ease;
+}
+
+.details > div:hover{
+  box-shadow: 0 0 5px #35353555;
 }
 
 .details > h2{
@@ -105,6 +111,15 @@ body{
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+}
+
+.disks .content > div,
+.memory .content > div{
+  border-top: 1px solid rgba(0, 0, 0, 0.355);
+}
+.disks .content > div > h3,
+.memory .content > div > h3{
+  text-align: center;
 }
 
 .ipvs{

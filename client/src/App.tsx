@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { Cpu, Gpu, MemoryStick, HardDrive, LayoutDashboard, AppWindow } from 'lucide-react'
+import { Cpu, Gpu, MemoryStick, HardDrive, LayoutDashboard, AppWindow, Computer, Cable, Wifi } from 'lucide-react'
 import "./App.css"
 
 const App = () => {
@@ -38,7 +38,11 @@ const App = () => {
     
   },[])
 
-  if(!dataJson) return <div className="loading"><h2>Loading PC Specs...</h2><div className="loadingIcon"></div></div>
+  if(!dataJson) return <div className="loading">
+    <h2>Loading PC Specs... </h2>
+      <div className="loadingIcon"></div>
+      <Computer/>
+    </div>
 
   return (
     <main className="App">
@@ -55,7 +59,7 @@ const App = () => {
 
         <div className="software">
 
-          <span className="title"><h2><AppWindow/> Software</h2></span>
+          <span className="title"><h2 style={{color:'#02334b'}}><AppWindow/> Software</h2></span>
 
           <div className="content">
             <p><strong>OS</strong>: {dataJson.osInfo.platform}</p>
@@ -70,7 +74,7 @@ const App = () => {
 
         <div className="mainboard">
 
-          <span className="title"><h2><LayoutDashboard/> Mainboard</h2></span>
+          <span className="title"><h2 style={{color:'#2b0000'}}><LayoutDashboard/> Mainboard</h2></span>
 
           <div className="content">
             <p><strong>Manufacturer</strong>: {dataJson.system.manufacturer}</p>
@@ -83,7 +87,7 @@ const App = () => {
 
         <div className="cpu">
 
-          <span className="title"><h2><Cpu/> CPU</h2></span>
+          <span className="title"><h2 style={{color:'#023b07'}}><Cpu/> CPU</h2></span>
 
           <div className="content">
             <p><strong>Name</strong>: {dataJson.cpu.brand}</p>
@@ -98,7 +102,7 @@ const App = () => {
 
         <div className="gpu">
 
-          <span className="title"><h2><Gpu/> GPU</h2></span>
+          <span className="title"><h2 style={{color:'#2f7b3f'}}><Gpu/> GPU</h2></span>
 
           <div className="content">
             {dataJson.graphics.controllers.map((data: any,index: number)=>(
@@ -115,13 +119,13 @@ const App = () => {
 
         <div className="disks">
 
-          <span className="title"><h2><HardDrive/> Disks</h2></span>
+          <span className="title"><h2 style={{color:'#251901'}}><HardDrive/> Disks</h2></span>
 
           <div className="content">
             {dataJson.diskLayout.map((data: any,index: number) => (
               <div key={index}>
 
-                <h3>Disk {index+1}</h3>
+                <h3>{index+1}</h3>
 
                   <p><strong>Name</strong>: {data.name}</p>
                   <p><strong>Brand</strong>: {data.vendor}</p>
@@ -142,7 +146,7 @@ const App = () => {
           <div className="content">
             {dataJson.memLayout.map((data: any,index: number)=>(
               <div key={index}>
-                <h3>RAM {index + 1}</h3>
+                <h3>{index + 1}</h3>
                 <p><strong>Brand</strong>: {data.manufacturer}</p>
                 <p><strong>Type</strong>: {data.type}</p>
                 <p><strong>Size</strong>: {data.size / (1024 ** 2)} MB</p>
@@ -160,7 +164,10 @@ const App = () => {
 
           <div className="content">
 
-          <p>Conection: <strong>{dataJson.wifiConnections[0].ssid}</strong>, via {conectionType}.</p>
+          <p><strong>{dataJson.wifiConnections[0].ssid}</strong>, via {conectionType}.
+            {conectionType == 'wireless' && <Wifi style={{opacity:.5}}/>}            
+            {conectionType == 'wired' && <Cable style={{opacity:.5}}/>}
+          </p>
 
             <div className="ipvs">
               <p><strong>IPV4</strong>: {ipv[0]}</p>
