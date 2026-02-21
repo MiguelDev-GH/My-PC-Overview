@@ -132,6 +132,7 @@ body{
   grid-column: span 2;
 }
 
+.general,
 .users,
 .software,
 .connection,

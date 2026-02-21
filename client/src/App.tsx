@@ -5,6 +5,7 @@ import "./App.css"
 const App = () => {
 
   const [dataJson, seDataJson] = useState<any>(null)
+  const [updatedDataJson, setUpdatedDataJson] = useState<any>(null)
   const [conectionType, setConectionType] = useState<string>('')
   const [ipv, setIpv] = useState<any[]>([])
 
@@ -20,7 +21,7 @@ const App = () => {
         const data = await response.json()
 
         if (!response.ok) {
-          throw new Error(`Erro HTTP: ${response.status}`);
+          throw new Error(`Error HTTP: ${response.status}`);
         }
 
         const active = Object.values(data.networkInterfaces).find((iface: any) => iface.default) as any;
@@ -40,11 +41,22 @@ const App = () => {
       }
     }
 
+    async function updateData() {
+  try {
+    const response = await fetch("/api/update");
+    if (!response.ok) throw new Error(`Error HTTP: ${response.status}`);
+    const updatedData = await response.json(); 
+
+    setUpdatedDataJson(updatedData);
+  } catch (error) {
+    console.error("Update error:", error);
+  }
+}
+
     loadData()
 
-    // const interval = setInterval(loadData, 1000);
-
-    // return () => clearInterval(interval)
+    const interval = setInterval(updateData, 1000);
+    return () => clearInterval(interval)
     
   },[])
 
@@ -137,7 +149,7 @@ const App = () => {
           <span className="title"><h2 style={{color:'#2f7b3f'}}><Gpu/> GPU</h2></span>
 
           <div className="content">
-            {dataJson.graphics.controllers.map((data: any,index: number)=>(
+            {(updatedDataJson && updatedDataJson.gpu) ? dataJson.graphics.controllers.map((data: any,index: number)=>(
               <div key={index}>
                 <h3>GPU {index+1} </h3>
                 <p><strong>Name</strong>: {data.name}</p>
@@ -147,9 +159,9 @@ const App = () => {
                 <p><strong>Power Limit</strong>: {data.powerLimit} W</p>
                 <p><strong>{data.vendor} driver version</strong>: {data.driverVersion}</p>
                 <p><strong>Sub Device ID</strong>: {data.subDeviceId}</p>
-                <p><strong>Temperature</strong>: {data.temperatureGpu}</p>
+                <p><strong>Temperature</strong>: {updatedDataJson.temperatureGpu}</p>
               </div>
-            ))}
+            )) : <p>Loading GPU data...</p>}
           </div>
         </div>
 
