@@ -142,6 +142,10 @@ body{
   grid-column: span 3;
 }
 
+.content{
+  position: relative;
+}
+
 .connection .content{
   display: flex;
   flex-direction: row;
@@ -160,6 +164,112 @@ body{
 
 .ipvs{
   opacity: .5;
+}
+
+.representations {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  justify-content:space-around;
+  align-items: center;
+  width: 50%;
+  right: 0;
+  height: 100%;
+  top: 0;
+}
+
+.representations *{
+}
+
+.gpuMemory{
+  position: relative;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  top: 0;
+
+}
+
+.gpuMemoryRepresentation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: conic-gradient(
+    green 0% var(--gpuUsedMemory), 
+    #444 0
+  );
+  border-radius: 50%; /* Torna o elemento circular */
+  height: clamp(7vh,20vh,40vh);
+  width: clamp(7vh,20vh,40vh);
+  transition: background 0.5s ease;
+
+  transform: scaleX(-1);
+
+  box-shadow: 0 0 30px gray;
+
+}
+
+.gpuMemoryRepresentation .percentageText {
+  position: relative;
+  z-index: 2;
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #353535;
+  transform: scaleX(-1); 
+}
+
+
+.gpuMemoryRepresentation::after {
+  content: "";
+  position: absolute;
+  width: 65%;
+  height: 65%;
+  background-color: #d0d0d0; /* Mesma cor de fundo do seu app */
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.tempMeter{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tempMeterContainer {
+  position: relative;
+  width: 30px;
+  height: 200px;
+  background-color: #353535;
+  border-radius: 10px;
+  overflow: hidden; /* Garante que a barra não saia do arredondamento */
+  box-shadow: 0 0 10px black;
+  z-index: 2;
+}
+
+.tempBackgroundGradient {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, 
+    #3498db 0%, 
+    #2ecc71 40%, 
+    #f1c40f 70%, 
+    #e74c3c 100%
+  );
+  opacity: 0.3; 
+}
+
+.tempLevelBar {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: var(--tempHeight);
+  background-color: rgba(255,255,255, 0.5);
+  background-attachment: fixed; 
+  transition: height 0.5s ease-in-out;
+  border-top: 5px solid white; 
 }
 
 @media screen and (max-width: 1024px) {
@@ -188,6 +298,13 @@ body{
   .connection .content {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .representations{
+    position:relative;
+    top: 0;
+    left: 0;
+    width: 100%;
   }
 
 }

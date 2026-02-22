@@ -60,7 +60,7 @@ module.exports.OsAllDetails = async () => {
             versions: rawData.versions,
             time: rawData.time,
             battery: rawData.battery,
-            // Dados do módulo 'os'
+        
             user: os.userInfo(),
             type: os.type(),
             version: os.version(),
@@ -72,7 +72,7 @@ module.exports.OsAllDetails = async () => {
             cache: rawData.cpuCache,
             currentSpeed: rawData.cpuCurrentSpeed,
             temperature: rawData.cpuTemperature,
-            cpus: os.cpus() // Dados do módulo 'os'
+            cpus: os.cpus()
         },
         memoryData: {
             usage: rawData.mem,
@@ -102,3 +102,20 @@ module.exports.OsAllDetails = async () => {
         }
     };
 };
+
+module.exports.getQuickUpdate = async () => {
+    const rawData = await si.get({
+        graphics:'controllers',
+        cpuCurrentSpeed: '*',
+        cpuTemperature: '*'
+    })
+
+    return {
+        graphics: rawData.graphics?.controllers || [],
+        
+        cpu: {
+            speed: rawData.cpuCurrentSpeed || {},
+            temp: rawData.cpuTemperature || {}
+        }
+    }
+}

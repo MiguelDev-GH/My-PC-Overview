@@ -7,7 +7,9 @@ const PORT = 3067
 const cors = require('cors');
 app.use(cors())
 
-const {OsAllDetails} = require("./osDetails")
+const { OsAllDetails, getQuickUpdate } = require("./osDetails")
+const { type } = require("os")
+const { cpuCurrentSpeed, graphics } = require("systeminformation")
 
 app.use(express.static(path.join(__dirname, "client")));
 
@@ -21,13 +23,12 @@ app.get("/api/osDetails", async (req,res)=>{
 })
 
 app.get("/api/update", async (req, res) => {
-    const fullData = await OsAllDetails();
-    res.json({
-        cpu: fullData.cpuData.currentSpeed,
-        temp: fullData.cpuData.temperature,
-        gpu: fullData.gpuData.graphics.controllers[0],
-        mem: fullData.memoryData.usage
-    });
+    try{
+        const quickData = await getQuickUpdate();
+        res.json(quickData);
+    } catch (error){
+        res.status(500).json({ "Erro to update data":error  });
+    }
 });
 
 app.get('/*splat', (req, res) => {
