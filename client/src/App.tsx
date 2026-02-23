@@ -47,13 +47,21 @@ const App = () => {
         const updatedData = await response2.json();
 
         if (isMounted){
+
+          setChassiType((data.systemData?.chassis.type).toLowerCase())
+
           if (data.networkData && data.networkData.interfaces) {
-            const active = Object.values(data.networkData.interfaces).find((iface: any) => iface.default) as any;
-            if (active) {
-              setConectionType(active.type);
-              setIpv([active.ip4, active.ip6])
-              setChassiType((data.systemData?.chassis.type).toLowerCase())
-            }
+            const active = Object.values(data.networkData.interfaces).map((iface: any) => {
+
+              if(iface.operstate == 'up' && iface.default){
+                if (iface) {
+                  setConectionType(iface.type);
+                  setIpv([iface.ip4, iface.ip6])
+                }
+              }
+
+            }) as any;
+            
           } else {
             console.warn("Interfaces de rede não encontradas");
             setConectionType('unknown');
@@ -64,7 +72,7 @@ const App = () => {
           seDataJson(data)
           setInitError(false)
 
-          intervalId.current = window.setInterval(updateData, 1000);
+          intervalId.current = window.setInterval(updateData, 1500);
 
         }
 
@@ -223,7 +231,8 @@ const App = () => {
                       <h2>VRAM Usage</h2>
                       <div className="gpuMemoryRepresentation" style={
                         {
-                          "--gpuUsedMemory": `${memoryPorcentage}%`,
+                          "--UsedMemory": `${memoryPorcentage}%`,
+                          "--cor": "#00539c"
                         } as React.CSSProperties}>
 
                         <span className="percentageText">{memoryPorcentage}%</span>
@@ -257,22 +266,40 @@ const App = () => {
           <div className="content">
             {dataJson.storageData.layout.map((data: any, index: number) => {
               
-              const totalGB = (dataJson.storageData.fileSystem.size[index].size / (1024 ** 3)).toFixed(2);
-              const usedGB = (dataJson.storageData.fileSystem.size[index].used / (1024 ** 3)).toFixed(2);
+              const totalGB = Number((dataJson.storageData.fileSystem.size[index].size / (1024 ** 3)).toFixed(2));
+              const usedGB = Number((dataJson.storageData.fileSystem.size[index].used / (1024 ** 3)).toFixed(2));
               const percentage = dataJson.storageData.fileSystem.size[index].use.toFixed(1);
+              const cor = percentage < 30 ? '#125b71' : 
+                percentage < 60 ? '#127112' : 
+                percentage < 80 ? '#adb900' : '#b90000';
               
               return (
               <div key={index}>
                 <h3>{index + 1}</h3>
                 <p><strong>Name</strong>: {data.name}</p>
                 <p><strong>Brand</strong>: {data.vendor}</p>
-                <p> <strong>Used / Total</strong>:{usedGB} / {totalGB} GB <b>({percentage}%)</b></p>
                 <p><strong>Type</strong>: {data.type}</p>
                 <p><strong>Interface Type</strong>: {data.interfaceType}</p>
                 <p>{data.bytesPerSector} Bytes per sector</p>
                 <p>{data.sectorsPerTrack} Sector per track</p>
                 <p><strong>Total Tracks:</strong> {String(data.totalTracks)}</p> 
                 <p><strong>Total Sectors:</strong> {String(data.totalSectors)}</p>
+
+                <div className="representations">
+
+                  <div className="diskRepresentation" style={
+                    {
+                      "--diskUsagePercentage":`${percentage}%`,
+                      "--cor":cor
+                    } as React.CSSProperties}>
+                      <div className="bar"></div>
+
+                  </div>
+
+                  <p><strong>{usedGB} / {totalGB} GB</strong></p>
+                  <p><b>({percentage}%)</b></p>
+
+                </div>
               </div>
             )})}
           </div>
@@ -297,11 +324,12 @@ const App = () => {
               </div>
             ))}
 
-            <div className="gpuMemory">
+            <div className="ramMemory">
                 <h2>Total RAM Usage</h2>
-                <div className="gpuMemoryRepresentation" style={
+                <div className="ramMemoryRepresentation" style={
                   {
-                    "--gpuUsedMemory": `${((updatedDataJson.memory.used / 1024 ** 3) / (updatedDataJson.memory.total / 1024 ** 3) * 100).toFixed(2)}%`,
+                    "--UsedMemory": `${((updatedDataJson.memory.used / 1024 ** 3) / (updatedDataJson.memory.total / 1024 ** 3) * 100).toFixed(2)}%`,
+                    "--cor": "green"
                   } as React.CSSProperties}>
 
                   <span className="percentageText">{((updatedDataJson.memory.used / 1024 ** 3) / (updatedDataJson.memory.total / 1024 ** 3) * 100).toFixed(2)}%</span>
@@ -332,7 +360,18 @@ const App = () => {
             </div>
           </div>
 
+          <h3 style={{textAlign:'center'}}>Other Connections</h3>
+
+          <div className="otherConnections">
+
+            {dataJson.networkData?.interfaces.map((x:any) => (
+                <p><b>{(x.iface)}</b> - {(x?.ip4)}</p>
+            ))}
+          </div>
+
         </div>
+
+        
 
       </div>
 

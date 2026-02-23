@@ -153,6 +153,15 @@ body{
   align-items: center;
 }
 
+.connection .otherConnections{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+  opacity: .8;
+}
+
 .disks .content > div,
 .memory .content > div{
   border-top: 1px solid rgba(0, 0, 0, 0.355);
@@ -179,7 +188,8 @@ body{
 }
 
 
-.gpuMemory{
+.gpuMemory,
+.ramMemory{
   position: relative;
   text-align: center;
   display: flex;
@@ -190,15 +200,18 @@ body{
 
 }
 
-.gpuMemoryRepresentation {
+.gpuMemoryRepresentation,
+.ramMemoryRepresentation {
   display: flex;
   align-items: center;
   justify-content: center;
+
   background: conic-gradient(
-    green 0% var(--gpuUsedMemory), 
+    var(--cor) 0% var(--UsedMemory), 
     #444 0
   );
-  border-radius: 50%; /* Torna o elemento circular */
+  
+  border-radius: 50%;
   height: clamp(7vh,20vh,40vh);
   width: clamp(7vh,20vh,40vh);
   transition: background 0.5s ease;
@@ -209,7 +222,8 @@ body{
 
 }
 
-.gpuMemoryRepresentation .percentageText {
+.gpuMemoryRepresentation .percentageText,
+.ramMemoryRepresentation .percentageText {
   position: relative;
   z-index: 2;
   font-size: 1.3rem;
@@ -219,7 +233,8 @@ body{
 }
 
 
-.gpuMemoryRepresentation::after {
+.gpuMemoryRepresentation::after,
+.ramMemoryRepresentation::after {
   content: "";
   position: absolute;
   width: 65%;
@@ -244,6 +259,36 @@ body{
   overflow: hidden; /* Garante que a barra não saia do arredondamento */
   box-shadow: 0 0 10px black;
   z-index: 2;
+}
+
+.disks .representations{
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content:center;
+  align-items: center;
+  width: 50%;
+  right: 0;
+  height: 100%;
+  top: 0;
+}
+
+.diskRepresentation {
+  position: relative;
+  width: 300px;
+  height: 40px;
+  background-color: #444;
+  border-radius: 30px;
+  box-shadow: 0 0 10px black;
+}
+
+.diskRepresentation > .bar{
+  position: relative;
+  height: 100%;
+  left: 0;
+  width: var(--diskUsagePercentage);
+  background-color: var(--cor);
+  border-radius: 30px;
 }
 
 .tempBackgroundGradient {
@@ -298,11 +343,16 @@ body{
     align-items: flex-start;
   }
 
-  .gpu .representations{
+  .gpu .representations,
+  .disks .representations{
     position:relative;
     top: 0;
     left: 0;
     width: 100%;
+  }
+
+  .diskRepresentation{
+    height: 10px;
   }
 
 }
