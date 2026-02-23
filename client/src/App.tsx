@@ -9,6 +9,8 @@ const App = () => {
   const [conectionType, setConectionType] = useState<string>('')
   const [ipv, setIpv] = useState<any[]>([])
 
+  const [chassiType, setChassiType] = useState('')
+
   const [InitError, setInitError] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
 
@@ -50,6 +52,7 @@ const App = () => {
             if (active) {
               setConectionType(active.type);
               setIpv([active.ip4, active.ip6])
+              setChassiType((data.systemData?.chassis.type).toLowerCase())
             }
           } else {
             console.warn("Interfaces de rede não encontradas");
@@ -101,7 +104,7 @@ const App = () => {
 
       <h1 className="titulo1">MY PC OVERVIEW</h1>
 
-      <h1 className="titulo2"><strong>{dataJson.systemData.osInfo.hostname}</strong> {dataJson.systemData.chassis.type} details: </h1>
+      <h1 className="titulo2"><strong>{dataJson.systemData.osInfo.hostname}</strong> {chassiType} details: </h1>
 
       <div className="details">
 
@@ -268,8 +271,8 @@ const App = () => {
                 <p><strong>Interface Type</strong>: {data.interfaceType}</p>
                 <p>{data.bytesPerSector} Bytes per sector</p>
                 <p>{data.sectorsPerTrack} Sector per track</p>
-                <p><strong>Total Tracks:</strong> {data.totalTracks.toLocaleString()}</p> 
-                <p><strong>Total Sectors:</strong> {data.totalSectors.toLocaleString()}</p>
+                <p><strong>Total Tracks:</strong> {String(data.totalTracks)}</p> 
+                <p><strong>Total Sectors:</strong> {String(data.totalSectors)}</p>
               </div>
             )})}
           </div>
@@ -293,26 +296,23 @@ const App = () => {
 
               </div>
             ))}
-          </div>
-          
-            <div className="representation">
 
-                  <div className="ramMemory">
-                    <h2>RAM usage</h2>
-                    <div className="ramMemoryRepresentation" style={
-                      {
-                        "--ramUsedMemory": `${
-                          ((((updatedDataJson.memory.used / 1024 ** 3) / (updatedDataJson.memory.total / 1024 ** 3)) as number) * 100).toFixed(2)
-                        }%`,
-                      } as React.CSSProperties}>
+            <div className="gpuMemory">
+                <h2>VRAM Usage</h2>
+                <div className="gpuMemoryRepresentation" style={
+                  {
+                    "--gpuUsedMemory": `${((updatedDataJson.memory.used / 1024 ** 3) / (updatedDataJson.memory.total / 1024 ** 3) * 100).toFixed(2)}%`,
+                  } as React.CSSProperties}>
 
-                      <span className="percentageText">{((((updatedDataJson.memory.used / 1024 ** 3) / (updatedDataJson.memory.total / 1024 ** 3)) as number) * 100).toFixed(1)}%</span>
-
-                    </div>
-                      
-                  </div>
+                  <span className="percentageText">{((updatedDataJson.memory.used / 1024 ** 3) / (updatedDataJson.memory.total / 1024 ** 3) * 100).toFixed(2)}%</span>
 
                 </div>
+
+                <p><span style={{color:'#444444'}}>{(updatedDataJson.memory.used / 1024 ** 2).toFixed(0)} / {(updatedDataJson.memory.total / 1024 ** 2).toFixed(0)} <b>MB </b></span></p> 
+
+              </div>
+
+          </div>
 
         </div>
 
