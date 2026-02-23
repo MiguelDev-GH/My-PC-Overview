@@ -298,7 +298,7 @@ const App = () => {
             ))}
 
             <div className="gpuMemory">
-                <h2>VRAM Usage</h2>
+                <h2>Total RAM Usage</h2>
                 <div className="gpuMemoryRepresentation" style={
                   {
                     "--gpuUsedMemory": `${((updatedDataJson.memory.used / 1024 ** 3) / (updatedDataJson.memory.total / 1024 ** 3) * 100).toFixed(2)}%`,
