@@ -268,7 +268,7 @@ const App = () => {
                 <p><strong>Interface Type</strong>: {data.interfaceType}</p>
                 <p>{data.bytesPerSector} Bytes per sector</p>
                 <p>{data.sectorsPerTrack} Sector per track</p>
-                <p><strong>Total Tracks:</strong> {data.totalTracks.toLocaleString()}</p>
+                <p><strong>Total Tracks:</strong> {data.totalTracks.toLocaleString()}</p> 
                 <p><strong>Total Sectors:</strong> {data.totalSectors.toLocaleString()}</p>
               </div>
             )})}
@@ -282,6 +282,7 @@ const App = () => {
 
           <div className="content">
             {dataJson.memoryData.layout.map((data: any, index: number) => (
+
               <div key={index}>
                 <h3>{index + 1}</h3>
                 <p><strong>Slot placed in motherboard</strong>: {data.bank}</p>
@@ -289,9 +290,29 @@ const App = () => {
                 <p><strong>Size</strong>: {data.size / (1024 ** 2)} MB</p>
                 <p><strong>Frequency in use</strong> (Clock Speed): {data.clockSpeed} Mhz</p>
                 <p><strong>Form Factor</strong>: {data.formFactor}</p>
+
               </div>
             ))}
           </div>
+          
+            <div className="representation">
+
+                  <div className="ramMemory">
+                    <h2>RAM usage</h2>
+                    <div className="ramMemoryRepresentation" style={
+                      {
+                        "--ramUsedMemory": `${
+                          ((((updatedDataJson.memory.used / 1024 ** 3) / (updatedDataJson.memory.total / 1024 ** 3)) as number) * 100).toFixed(2)
+                        }%`,
+                      } as React.CSSProperties}>
+
+                      <span className="percentageText">{((((updatedDataJson.memory.used / 1024 ** 3) / (updatedDataJson.memory.total / 1024 ** 3)) as number) * 100).toFixed(1)}%</span>
+
+                    </div>
+                      
+                  </div>
+
+                </div>
 
         </div>
 

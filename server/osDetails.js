@@ -107,7 +107,8 @@ module.exports.getQuickUpdate = async () => {
     const rawData = await si.get({
         graphics:'controllers',
         cpuCurrentSpeed: '*',
-        cpuTemperature: '*'
+        cpuTemperature: '*',
+        mem:'*'
     })
 
     return {
@@ -116,6 +117,8 @@ module.exports.getQuickUpdate = async () => {
         cpu: {
             speed: rawData.cpuCurrentSpeed || {},
             temp: rawData.cpuTemperature || {}
-        }
+        },
+
+        memory: rawData.mem || []
     }
 }
