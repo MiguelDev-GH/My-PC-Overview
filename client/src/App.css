@@ -15,6 +15,7 @@ body{
   background-color:#284B63;
   color: white;
   font-family: "Roboto Flex", sans-serif;
+  scroll-behavior: smooth;
 }
 
 .App{
@@ -22,6 +23,7 @@ body{
   flex-direction: column;
   justify-content: start;
   align-items: center;
+  gap:30px
 }
 
 .loading{
@@ -69,18 +71,20 @@ body{
 }
 
 .titulo1{
-  position: relative;
+  color: #000000;
+  position: absolute;
   text-align: center;
   font-family: "Josefin Sans", sans-serif;
   font-weight: 800;
   font-size: clamp(1rem,3rem,4rem);
-  text-shadow: #d0d0d0 0 0 4px;
-  background-color: #1d3a4d;
-  background: linear-gradient(to bottom,#1d3a4d , #284B63);
+  text-shadow: #000000 0 0 4px;
+  background-color: #D9D9D9;
   box-sizing: border-box;
   margin: 0;
-  width: 100%;
-  padding: 50px 0;
+  width: 35%;
+  height: 100px;
+  padding: 30px 0;
+  border-radius: 0 0 50px 50px;
 }
 
 .titulo2{

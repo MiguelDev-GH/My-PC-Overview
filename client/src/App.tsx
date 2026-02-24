@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from "react"
 import { Cpu, Gpu, MemoryStick, HardDrive, LayoutDashboard, AppWindow, Computer, Cable, Wifi, UsersRound, Cog, Flame, Fan } from 'lucide-react'
+import NavBar from "./components/NavBar.tsx"
 import "./App.css"
 
 const App = () => {
@@ -110,6 +111,8 @@ const App = () => {
   return (
     <main className="App">
 
+      <NavBar/>
+
       <h1 className="titulo1">MY PC OVERVIEW</h1>
 
       <h1 className="titulo2"><strong>{dataJson.systemData.osInfo.hostname}</strong> {chassiType} details: </h1>
@@ -137,6 +140,10 @@ const App = () => {
 
         </div>
 
+        </div>
+
+        <div className="details">
+
         <h2>Hardware</h2>
 
         <div className="general">
@@ -151,7 +158,7 @@ const App = () => {
 
         </div>
 
-        <div className="mainboard">
+        <div className="mainboard" id="mainboard">
 
           <span className="title"><h2 style={{color: '#2b0000'}}><LayoutDashboard /> Mainboard</h2></span>
 
@@ -164,7 +171,7 @@ const App = () => {
 
         </div>
 
-        <div className="cpu">
+        <div className="cpu" id="cpu">
 
           <span className="title"><h2 style={{color: '#023b07'}}><Cpu /> CPU</h2></span>
 
@@ -179,7 +186,7 @@ const App = () => {
 
         </div>
 
-        <div className="gpu">
+        <div className="gpu" id="gpu">
 
           <span className="title"><h2 style={{color: '#2f7b3f'}}><Gpu /> GPU</h2></span>
 
@@ -259,7 +266,7 @@ const App = () => {
           </div>
         </div>
 
-        <div className="disks">
+        <div className="disks" id="disks">
 
           <span className="title"><h2 style={{color: '#251901'}}><HardDrive /> Disks</h2></span>
 
@@ -306,7 +313,7 @@ const App = () => {
 
         </div>
 
-        <div className="memory">
+        <div className="memory" id="memory">
 
           <span className="title"><h2><MemoryStick /> RAM Memory</h2></span>
 
@@ -344,7 +351,7 @@ const App = () => {
 
         </div>
 
-        <div className="connection">
+        <div className="connection" id="connection">
 
           <span className="title"><h2>Connection</h2></span>
 
