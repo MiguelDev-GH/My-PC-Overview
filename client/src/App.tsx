@@ -371,8 +371,8 @@ const App = () => {
 
           <div className="otherConnections">
 
-            {dataJson.networkData?.interfaces.map((x:any) => (
-                <p><b>{(x.iface)}</b> - {(x?.ip4)}</p>
+            {dataJson.networkData?.interfaces.map((x:any, index:number) => (
+                <p key={index}><b>{(x.iface)}</b> - {(x?.ip4)}</p>
             ))}
           </div>
 
