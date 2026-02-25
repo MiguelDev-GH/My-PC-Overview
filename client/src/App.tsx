@@ -44,20 +44,21 @@ const App = () => {
         const data = await response.json()
 
         const response2 = await fetch("/api/update");
+
         if (!response2.ok) throw new Error(`Error HTTP: ${response2.status}`);
         const updatedData = await response2.json();
 
         if (isMounted){
 
-          setChassiType((data.systemData?.chassis.type).toLowerCase())
+          setChassiType((data.systemData?.chassis?.type || '').toLowerCase())
 
-          if (data.networkData && data.networkData.interfaces) {
-            Object.values(data.networkData.interfaces).map((iface: any) => {
+          if (data?.networkData && data?.networkData?.interfaces) {
+            Object.values(data.networkData.interfaces || {}).map((iface: any) => {
 
               if(iface.operstate == 'up' && iface.default){
                 if (iface) {
-                  setConectionType(iface.type);
-                  setIpv([iface.ip4, iface.ip6])
+                  setConectionType(iface?.type || '');
+                  setIpv([iface?.ip4, iface?.ip6])
                 }
               }
 
@@ -69,8 +70,8 @@ const App = () => {
           }
 
 
-          setUpdatedDataJson(updatedData);
-          seDataJson(data)
+          setUpdatedDataJson(updatedData || '');
+          seDataJson(data || '')
           setInitError(false)
 
           intervalId.current = window.setInterval(updateData, 1500);
@@ -115,15 +116,15 @@ const App = () => {
 
       {/* <h1 className="titulo1">MY PC OVERVIEW</h1> */}
 
-      <h1 className="titulo2"><strong>{dataJson.systemData.osInfo.hostname}</strong> {chassiType} details: </h1>
+      <h1 className="titulo2"><strong>{dataJson.systemData?.osInfo?.hostname}</strong> {chassiType} details: </h1>
 
       <div className="details">
 
         <div className="users">
           <span className="title"><h2 style={{color: '#000000'}}><UsersRound /> Users</h2></span>
-          <p>Welcome <strong>{dataJson.systemData.user.username}</strong>!</p>
-          <p>Users length in {dataJson.systemData.osInfo.hostname}: <strong>{dataJson.systemData.users.length}</strong></p>
-          {dataJson.systemData.users.length > 1 && <p>Other users:</p>}
+          <p>Welcome <strong>{dataJson.systemData?.user?.username}</strong>!</p>
+          <p>Users length in {dataJson.systemData?.osInfo?.hostname}: <strong>{dataJson.systemData?.users?.length}</strong></p>
+          {dataJson.systemData?.users?.length > 1 && <p>Other users:</p>}
         </div>
 
         <div className="software">
@@ -131,11 +132,11 @@ const App = () => {
           <span className="title"><h2 style={{color: '#02334b'}}><AppWindow /> Software</h2></span>
 
           <div className="content">
-            <p><strong>OS</strong>: {dataJson.systemData.osInfo.platform}</p>
-            <p><strong>Distro</strong>: {dataJson.systemData.osInfo.distro}</p>
-            <p><strong>Software Version</strong>: {dataJson.systemData.version}</p>
-            <p><strong>Uefi Activated</strong>: {JSON.stringify(dataJson.systemData.osInfo.uefi)}</p>
-            <p><strong>Virtual Machine</strong>: {String(dataJson.systemData.system.virtual)}</p>
+            <p><strong>OS</strong>: {dataJson.systemData?.osInfo?.platform}</p>
+            <p><strong>Distro</strong>: {dataJson.systemData?.osInfo?.distro}</p>
+            <p><strong>Software Version</strong>: {dataJson.systemData?.version}</p>
+            <p><strong>Uefi Activated</strong>: {JSON.stringify(dataJson.systemData?.osInfo?.uefi)}</p>
+            <p><strong>Virtual Machine</strong>: {String(dataJson.systemData?.system?.virtual)}</p>
           </div>
 
         </div>
@@ -150,10 +151,10 @@ const App = () => {
           <span className="title"><h2 style={{color: '#242323'}}><Cog /> General</h2></span>
 
           <div className="content">
-            <p style={{textAlign: 'center'}}>{dataJson.systemData.system.version}</p>
-            <p><strong>Model</strong> {dataJson.systemData.system.model}</p>
-            <p><strong>Serial</strong> {dataJson.systemData.system.serial}</p>
-            <p><strong>UUID</strong> {dataJson.systemData.system.uuid}</p>
+            <p style={{textAlign: 'center'}}>{dataJson.systemData?.system?.version}</p>
+            <p><strong>Model</strong> {dataJson.systemData?.system?.model}</p>
+            <p><strong>Serial</strong> {dataJson.systemData?.system?.serial}</p>
+            <p><strong>UUID</strong> {dataJson.systemData?.system?.uuid}</p>
           </div>
 
         </div>
@@ -163,10 +164,10 @@ const App = () => {
           <span className="title"><h2 style={{color: '#2b0000'}}><LayoutDashboard /> Mainboard</h2></span>
 
           <div className="content">
-            <p><strong>Manufacturer</strong>: {dataJson.systemData.system.manufacturer}</p>
-            <p><strong>Model</strong>: {dataJson.systemData.baseboard.model} - {dataJson.systemData.baseboard.version}</p>
-            <p><strong>Max Memory</strong>: {dataJson.systemData.baseboard.memMax / (1024 ** 3)} GB Ram</p>
-            <p><strong>Memory Slots</strong>: {dataJson.systemData.baseboard.memSlots}</p>
+            <p><strong>Manufacturer</strong>: {dataJson.systemData?.system?.manufacturer}</p>
+            <p><strong>Model</strong>: {dataJson.systemData?.baseboard?.model} - {dataJson.systemData?.baseboard?.version}</p>
+            <p><strong>Max Memory</strong>: {dataJson.systemData?.baseboard?.memMax / (1024 ** 3)} GB Ram</p>
+            <p><strong>Memory Slots</strong>: {dataJson.systemData?.baseboard?.memSlots}</p>
           </div>
 
         </div>
@@ -176,12 +177,12 @@ const App = () => {
           <span className="title"><h2 style={{color: '#023b07'}}><Cpu /> CPU</h2></span>
 
           <div className="content">
-            <p><strong>Name</strong>: {dataJson.cpuData.info.brand}</p>
-            <p><strong>Brand</strong>: {dataJson.cpuData.info.manufacturer}</p>
-            <p><strong>Package</strong>: {dataJson.cpuData.info.socket}</p>
-            <p><strong>Cores</strong>: {dataJson.cpuData.info.physicalCores}</p>
-            <p><strong>Threads</strong>: {dataJson.cpuData.info.cores}</p>
-            <p><strong>Speed</strong>: {(dataJson.cpuData.info.speed).toFixed(2)} @GHz</p>
+            <p><strong>Name</strong>: {dataJson.cpuData?.info?.brand}</p>
+            <p><strong>Brand</strong>: {dataJson.cpuData?.info?.manufacturer}</p>
+            <p><strong>Package</strong>: {dataJson.cpuData?.info?.socket}</p>
+            <p><strong>Cores</strong>: {dataJson.cpuData?.info?.physicalCores}</p>
+            <p><strong>Threads</strong>: {dataJson.cpuData?.info?.cores}</p>
+            <p><strong>Speed</strong>: {(dataJson.cpuData?.info?.speed).toFixed(2)} @GHz</p>
           </div>
 
         </div>
@@ -193,14 +194,14 @@ const App = () => {
           <div className="content">
             {dataJson.gpuData.graphics.controllers.map((data: any, index: number) => {
               
-              let temperatureGpu = updatedDataJson.graphics[index].temperatureGpu
-              let memoryUsed = updatedDataJson.graphics[index].memoryUsed
-              let memoryTotal = updatedDataJson.graphics[index].memoryTotal
+              let temperatureGpu = updatedDataJson?.graphics[index]?.temperatureGpu
+              let memoryUsed = updatedDataJson?.graphics[index]?.memoryUsed
+              let memoryTotal = updatedDataJson?.graphics[index]?.memoryTotal
               let memoryPorcentage = ((memoryUsed / memoryTotal) * 100).toFixed(0)
 
-              let clockCore = updatedDataJson.graphics[index].clockCore
-              let clockMemory = updatedDataJson.graphics[index].clockMemory
-              let fanSpeed = updatedDataJson.graphics[index].fanSpeed
+              let clockCore = updatedDataJson?.graphics[index]?.clockCore
+              let clockMemory = updatedDataJson?.graphics[index]?.clockMemory
+              let fanSpeed = updatedDataJson?.graphics[index]?.fanSpeed
               
               return (
               
@@ -273,9 +274,9 @@ const App = () => {
           <div className="content">
             {dataJson.storageData.layout.map((data: any, index: number) => {
               
-              const totalGB = Number((dataJson.storageData.fileSystem.size[index].size / (1024 ** 3)).toFixed(2));
-              const usedGB = Number((dataJson.storageData.fileSystem.size[index].used / (1024 ** 3)).toFixed(2));
-              const percentage = dataJson.storageData.fileSystem.size[index].use.toFixed(1);
+              const totalGB = Number((dataJson.storageData?.fileSystem?.size[index]?.size / (1024 ** 3)).toFixed(2));
+              const usedGB = Number((dataJson.storageData?.fileSystem?.size[index]?.used / (1024 ** 3)).toFixed(2));
+              const percentage = dataJson.storageData?.fileSystem?.size[index]?.use.toFixed(1);
               const cor = percentage < 30 ? '#125b71' : 
                 percentage < 60 ? '#127112' : 
                 percentage < 80 ? '#adb900' : '#b90000';
@@ -335,15 +336,15 @@ const App = () => {
                 <h2>Total RAM Usage</h2>
                 <div className="ramMemoryRepresentation" style={
                   {
-                    "--UsedMemory": `${((updatedDataJson.memory.used / 1024 ** 3) / (updatedDataJson.memory.total / 1024 ** 3) * 100).toFixed(2)}%`,
+                    "--UsedMemory": `${((updatedDataJson?.memory?.used / 1024 ** 3) / (updatedDataJson?.memory?.total / 1024 ** 3) * 100).toFixed(2)}%`,
                     "--cor": "green"
                   } as React.CSSProperties}>
 
-                  <span className="percentageText">{((updatedDataJson.memory.used / 1024 ** 3) / (updatedDataJson.memory.total / 1024 ** 3) * 100).toFixed(2)}%</span>
+                  <span className="percentageText">{((updatedDataJson?.memory?.used / 1024 ** 3) / (updatedDataJson?.memory?.total / 1024 ** 3) * 100).toFixed(2)}%</span>
 
                 </div>
 
-                <p><span style={{color:'#444444'}}>{(updatedDataJson.memory.used / 1024 ** 2).toFixed(0)} / {(updatedDataJson.memory.total / 1024 ** 2).toFixed(0)} <b>MB </b></span></p> 
+                <p><span style={{color:'#444444'}}>{(updatedDataJson?.memory?.used / 1024 ** 2).toFixed(0)} / {(updatedDataJson?.memory?.total / 1024 ** 2).toFixed(0)} <b>MB </b></span></p> 
 
               </div>
 
@@ -356,7 +357,7 @@ const App = () => {
           <span className="title"><h2>Connection</h2></span>
 
           <div className="content">
-            <p><strong>{dataJson.networkData.wifi.connections[0]?.ssid || 'N/A'}</strong>, via {conectionType}.
+            <p><strong>{dataJson.networkData?.wifi?.connections[0]?.ssid || 'N/A'}</strong>, via {conectionType}.
               {conectionType === 'wireless' && <Wifi style={{opacity: .5}} />}
               {conectionType === 'wired' && <Cable style={{opacity: .5}} />}
             </p>
@@ -371,7 +372,7 @@ const App = () => {
 
           <div className="otherConnections">
 
-            {dataJson.networkData?.interfaces.map((x:any, index:number) => (
+            {Object.entries(dataJson.networkData?.interfaces || {}).map(( x:any, index:number) => (
                 <p key={index}><b>{(x.iface)}</b> - {(x?.ip4)}</p>
             ))}
           </div>

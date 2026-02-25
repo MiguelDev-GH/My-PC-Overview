@@ -115,10 +115,10 @@ module.exports.getQuickUpdate = async () => {
         graphics: rawData.graphics?.controllers || [],
         
         cpu: {
-            speed: rawData.cpuCurrentSpeed || {},
-            temp: rawData.cpuTemperature || {}
+            speed: rawData.cpuCurrentSpeed || {'':''},
+            temp: rawData.cpuTemperature || {'':''}
         },
 
-        memory: rawData.mem || []
+        memory: rawData.mem || ['']
     }
 }
