@@ -52,7 +52,7 @@ const App = () => {
           setChassiType((data.systemData?.chassis.type).toLowerCase())
 
           if (data.networkData && data.networkData.interfaces) {
-            const active = Object.values(data.networkData.interfaces).map((iface: any) => {
+            Object.values(data.networkData.interfaces).map((iface: any) => {
 
               if(iface.operstate == 'up' && iface.default){
                 if (iface) {
@@ -113,7 +113,7 @@ const App = () => {
 
       <NavBar/>
 
-      <h1 className="titulo1">MY PC OVERVIEW</h1>
+      {/* <h1 className="titulo1">MY PC OVERVIEW</h1> */}
 
       <h1 className="titulo2"><strong>{dataJson.systemData.osInfo.hostname}</strong> {chassiType} details: </h1>
 

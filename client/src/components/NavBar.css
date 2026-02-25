@@ -1,5 +1,5 @@
 nav{
-    position: sticky;
+    position: fixed;
     width: 95%;
     display: flex;
     flex-direction: row;
@@ -16,35 +16,129 @@ nav a{
 }
 
 nav .icons > *,
-nav a{
+nav a,
+nav .menuButton{
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     border-radius: 30px;
-    background-color: #D9D9D9;
-    padding: 20px;
-    font-weight: 700;
+    background-color: #d9d9d9;
+    padding: 1vw;
+    font-weight: 800;
+    font-size: 1rem;
     cursor: pointer;
     transition: .5s all ease;
+    overflow: hidden;
+    white-space: nowrap;
+    box-shadow: 0 0 5px black;
 }
 
-nav .icons > *:hover,
-nav a:hover{
+nav .icons > *:hover{
     transform: scale(1.2);
 }
 
 nav .icons{
+    position: relative;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    gap: 20px;
+    gap: 1vw;
     padding: 10px;
     border-radius: 30px;
     transition: background-color .5s ease;
+    width: 28vw;
 }
 
 nav .icons:hover{
     background-color: rgba(255,255,255,0.1);
+}
+
+nav .icons > a > p{
+    display:none;
+}
+
+nav .menuButton{
+    display: none;
+    z-index: 101;
+}
+
+nav .overlay{
+    display: block;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0.1);
+    backdrop-filter: blur(1px);
+    padding: 0;
+    opacity: 0;
+    z-index: 99;
+    transform: scale(2);
+    transition: all 1s ease;
+}
+
+@media screen and (width < 1250px){
+
+    nav {
+        justify-content: flex-end;
+    }
+
+    nav .menuButton{
+        display: block;
+        right: 0;
+        opacity: 1;
+        padding: 10px;
+    }
+
+    nav .icons{
+        position: fixed;
+        flex-direction: column;
+        align-items: flex-start;
+        height: 80vh;
+        background-color: rgba(217, 217, 217, 0.5);
+        backdrop-filter: blur(5px);
+        gap: 5px;
+        width:150px;
+        padding: 10px 20px;
+        right: 80px;
+        z-index: 100;
+        top: 30px;
+        transition: background-color .5s ease, right .5s ease;
+    }
+
+    nav .icons:hover{
+        background-color: rgba(217, 217, 217, 0.5);
+    }
+
+    nav .icons > a{
+        background-color: rgba(217, 217, 217, 0.5);
+        transform: scale(1.1);
+    }
+
+    nav .icons > a{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 1rem;
+        gap: 10px;
+        padding: 0px 10px;
+        box-shadow: 0 0 5px rgba(0, 0, 0,0.1);
+    }
+
+    nav .icons > .github{
+        align-self: center;
+    }
+
+    nav .icons > a > p{
+        display: block;
+    }
+
+    nav .icons > a:hover{
+        transform: scale(1.2);
+    }
 }
