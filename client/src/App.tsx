@@ -182,7 +182,7 @@ const App = () => {
             <p><strong>Package</strong>: {dataJson.cpuData?.info?.socket}</p>
             <p><strong>Cores</strong>: {dataJson.cpuData?.info?.physicalCores}</p>
             <p><strong>Threads</strong>: {dataJson.cpuData?.info?.cores}</p>
-            <p><strong>Speed</strong>: {(dataJson.cpuData?.info?.speed).toFixed(2)} @GHz</p>
+            <p><strong>Speed</strong>: {(dataJson.cpuData?.info?.speed || 0).toFixed(2)} @GHz</p>
           </div>
 
         </div>
@@ -274,9 +274,9 @@ const App = () => {
           <div className="content">
             {dataJson.storageData.layout.map((data: any, index: number) => {
               
-              const totalGB = Number((dataJson.storageData?.fileSystem?.size[index]?.size / (1024 ** 3)).toFixed(2));
-              const usedGB = Number((dataJson.storageData?.fileSystem?.size[index]?.used / (1024 ** 3)).toFixed(2));
-              const percentage = dataJson.storageData?.fileSystem?.size[index]?.use.toFixed(1);
+              const totalGB = Number((dataJson.storageData?.fileSystem?.size[index]?.size / (1024 ** 3) || 0).toFixed(2));
+              const usedGB = Number((dataJson.storageData?.fileSystem?.size[index]?.used / (1024 ** 3) || 0).toFixed(2));
+              const percentage = (dataJson.storageData?.fileSystem?.size[index]?.use || 0).toFixed(1);
               const cor = percentage < 30 ? '#125b71' : 
                 percentage < 60 ? '#127112' : 
                 percentage < 80 ? '#adb900' : '#b90000';
@@ -372,7 +372,7 @@ const App = () => {
 
           <div className="otherConnections">
 
-            {Object.entries(dataJson.networkData?.interfaces || {}).map(( x:any, index:number) => (
+            {Object.values(dataJson.networkData?.interfaces || {}).map(( x:any, index:number) => (
                 <p key={index}><b>{(x.iface)}</b> - {(x?.ip4)}</p>
             ))}
           </div>
