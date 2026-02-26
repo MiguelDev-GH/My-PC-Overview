@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from "react"
 import { Cpu, Gpu, MemoryStick, HardDrive, LayoutDashboard, AppWindow, Computer, Cable, Wifi, UsersRound, Cog, Flame, Fan } from 'lucide-react'
 import NavBar from "./components/NavBar.tsx"
 import "./App.css"
+import PageInitTitle from "./assets/PageInitTitle.png"
 
 const App = () => {
 
@@ -141,6 +142,8 @@ const App = () => {
 
       {/* <h1 className="titulo1">MY PC OVERVIEW</h1> */}
 
+      <img src={PageInitTitle} className="PageInitTitle"/>
+
       <h1 className="titulo2"><strong>{dataJson.systemData?.osInfo?.hostname}</strong> {chassiType} details: </h1>
 
       <div className="details">
@@ -152,7 +155,7 @@ const App = () => {
           {dataJson.systemData?.users?.length > 1 && <p>Other users:</p>}
         </div>
 
-        <div className="software" style={{borderBottomColor:'#02334b'}}>
+        <div className="software" style={{}}>
 
           <span className="title"><h2 style={{color: '#02334b'}}><AppWindow /> Software</h2></span>
 
@@ -172,7 +175,7 @@ const App = () => {
 
         <h2>Hardware</h2>
 
-        <div className="general" style={{borderBottomColor:'#242323'}}>
+        <div className="general" style={{}}>
           <span className="title"><h2 style={{color: '#242323'}}><Cog /> General</h2></span>
 
           <div className="content">
@@ -185,7 +188,7 @@ const App = () => {
 
         </div>
 
-        <div className="mainboard" id="mainboard" style={{borderBottomColor:'#2b0000'}}>
+        <div className="mainboard" id="mainboard">
 
           <span className="title"><h2 style={{color: '#2b0000'}}><LayoutDashboard /> Mainboard</h2></span>
 
@@ -293,7 +296,7 @@ const App = () => {
           </div>
         </div>
 
-        <div className="disks" id="disks" style={{borderBottomColor:'#251901'}}>
+        <div className="disks" id="disks" style={{}}>
 
           <span className="title"><h2 style={{color: '#251901'}}><HardDrive /> Disks</h2></span>
 
@@ -340,21 +343,37 @@ const App = () => {
           </div>
 
 
-            <h2 style={{textAlign:'center'}}>Partitions or other disks</h2>
+            <h2 style={{textAlign:'center', marginTop:'20px'}}>Partitions or other storages</h2>
 
-              {dataJson.storageData?.blockDevices.map((data:any, index:number)=>{
-                
-              return (
-                <div key={index} className="blockDevices">
+            <div className="blockDevices">
+              <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>File System Type</th>
+                  <th>Removable</th>
+                  <th>Type</th>
+                  <th>Size</th>
+                </tr>
+              </thead>
+              <tbody>
+                {dataJson.storageData?.blockDevices.map((data:any, index:number)=>{
+                  
+                return (
 
-                  <p><strong>Name</strong>: {data.name} {data.physical && ` - ${data.physical}`}</p>
-                  <p><strong>Removable</strong>: {String(data.removable)}</p>
-                  <p><strong>Type</strong>: {data.type}</p>
-                  <p><strong>Size</strong>: {(data.size / 1024 ** 3).toFixed(2)} GB</p>
-                    
-                </div>
-              )})}
+                    <tr key={index}>
+                      <td><p> <b>{data.name} {data.physical && ` - ${data.physical}`}</b></p></td>
+                      <td><p> <b>{data.fsType || '...'}</b></p></td>
+                      <td><p> {String(data.removable)}</p></td>
+                      <td><p> {data.type}</p></td>
+                      <td><p> {data.size ? (data.size / 1024 ** 3).toFixed(2) + 'GB' : '...'} </p></td>
+                    </tr>
 
+                  
+                )})}
+                </tbody>
+                </table>
+            </div>
         </div>
 
         <div className="memory" id="memory">

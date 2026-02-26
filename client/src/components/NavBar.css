@@ -8,7 +8,7 @@ nav{
     justify-content: space-between;
     align-items: center;
     z-index: 999;
-    height: 100px;
+    height: 70px;
     color: black;
     background-color: white;
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
@@ -28,7 +28,7 @@ nav .menuButton{
     align-items: center;
     border-radius: 30px;
     background-color: #d9d9d9;
-    padding: 1vw;
+    padding: .7vw;
     font-weight: 800;
     font-size: 1rem;
     cursor: pointer;
@@ -39,7 +39,7 @@ nav .menuButton{
 }
 
 nav .icons > *:hover{
-    transform: scale(1.2);
+    transform: scale(1.1);
 }
 
 nav .icons{
