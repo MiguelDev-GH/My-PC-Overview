@@ -1,6 +1,8 @@
 nav{
     position: fixed;
-    width: 95%;
+    width: 100%;
+    padding: 0 5%; 
+    box-sizing: border-box;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -8,6 +10,8 @@ nav{
     z-index: 999;
     height: 100px;
     color: black;
+    background-color: white;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
 }
 
 nav a{
@@ -80,10 +84,19 @@ nav .overlay{
     transition: all 1s ease;
 }
 
+nav .mainboard *{color: #480101;}
+nav .cpu *{color: #024a08;}
+nav .gpu *{color:#36a44d ;}
+nav .disks *{color: #4b3302 ;}
+nav .memory *{color: #759704;}
+nav .connection *{color: #047c7e;}
+
 @media screen and (width < 1250px){
 
     nav {
         justify-content: flex-end;
+        background-color: rgba(0, 0, 0,0);
+        box-shadow: none;
     }
 
     nav .menuButton{

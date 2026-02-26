@@ -152,7 +152,7 @@ const App = () => {
           {dataJson.systemData?.users?.length > 1 && <p>Other users:</p>}
         </div>
 
-        <div className="software">
+        <div className="software" style={{borderBottomColor:'#02334b'}}>
 
           <span className="title"><h2 style={{color: '#02334b'}}><AppWindow /> Software</h2></span>
 
@@ -172,7 +172,7 @@ const App = () => {
 
         <h2>Hardware</h2>
 
-        <div className="general">
+        <div className="general" style={{borderBottomColor:'#242323'}}>
           <span className="title"><h2 style={{color: '#242323'}}><Cog /> General</h2></span>
 
           <div className="content">
@@ -185,7 +185,7 @@ const App = () => {
 
         </div>
 
-        <div className="mainboard" id="mainboard">
+        <div className="mainboard" id="mainboard" style={{borderBottomColor:'#2b0000'}}>
 
           <span className="title"><h2 style={{color: '#2b0000'}}><LayoutDashboard /> Mainboard</h2></span>
 
@@ -198,7 +198,7 @@ const App = () => {
 
         </div>
 
-        <div className="cpu" id="cpu">
+        <div className="cpu" id="cpu" style={{borderBottomColor:'#023b07'}}>
 
           <span className="title"><h2 style={{color: '#023b07'}}><Cpu /> CPU</h2></span>
 
@@ -213,7 +213,7 @@ const App = () => {
 
         </div>
 
-        <div className="gpu" id="gpu">
+        <div className="gpu" id="gpu" style={{borderBottomColor:'#2f7b3f'}}>
 
           <span className="title"><h2 style={{color: '#2f7b3f'}}><Gpu /> GPU</h2></span>
 
@@ -293,7 +293,7 @@ const App = () => {
           </div>
         </div>
 
-        <div className="disks" id="disks">
+        <div className="disks" id="disks" style={{borderBottomColor:'#251901'}}>
 
           <span className="title"><h2 style={{color: '#251901'}}><HardDrive /> Disks</h2></span>
 

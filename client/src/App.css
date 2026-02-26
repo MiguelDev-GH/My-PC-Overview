@@ -12,8 +12,8 @@ body{
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  background-color:#284B63;
-  color: white;
+  background-color:#D9D9D9;
+  color: black;
   font-family: "Roboto Flex", sans-serif;
   scroll-behavior: smooth;
 }
@@ -78,7 +78,6 @@ body{
   font-weight: 800;
   font-size: clamp(1rem,2rem,4rem);
   text-shadow: #000000 0 0 4px;
-  background-color: #D9D9D9;
   box-sizing: border-box;
   margin: 0;
   width: 30vw;
@@ -92,7 +91,7 @@ body{
   position: relative;
   text-align: center;
   font-weight: 500;
-  padding-top: 80px;
+  padding-top: 100px;
 }
 
 .title{
@@ -123,6 +122,7 @@ body{
   box-shadow: 0 0 5px rgba(53, 53, 53, 0.333);
   padding: 5px 20px;
   transition: all .1s ease;
+  background-color: white;
 }
 
 .details > h2{
