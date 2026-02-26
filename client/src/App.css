@@ -42,7 +42,7 @@ body{
   height: 50px;
   border-radius: 50%;
   background: rgba(0,0,0,0);
-  border: 25px dashed rgba(95, 158, 160, 0.449);
+  border: 10px dashed rgba(95, 158, 160, 0.449);
   animation: loadingAnimation 2s infinite ease-in-out;
 }
 
@@ -147,6 +147,10 @@ body{
 
 .content{
   position: relative;
+}
+
+.blockDevices{
+  border-top: 1px solid rgba(0, 0, 0, 0.5); 
 }
 
 .connection .content{

@@ -336,7 +336,24 @@ const App = () => {
                 </div>
               </div>
             )})}
+
           </div>
+
+
+            <h2 style={{textAlign:'center'}}>Partitions or other disks</h2>
+
+              {dataJson.storageData?.blockDevices.map((data:any, index:number)=>{
+                
+              return (
+                <div key={index} className="blockDevices">
+
+                  <p><strong>Name</strong>: {data.name} {data.physical && ` - ${data.physical}`}</p>
+                  <p><strong>Removable</strong>: {String(data.removable)}</p>
+                  <p><strong>Type</strong>: {data.type}</p>
+                  <p><strong>Size</strong>: {(data.size / 1024 ** 3).toFixed(2)} GB</p>
+                    
+                </div>
+              )})}
 
         </div>
 
