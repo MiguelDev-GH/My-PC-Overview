@@ -109,6 +109,31 @@ const App = () => {
     <Computer />
   </div>
 
+  const system = {
+    'version': dataJson.systemData?.system?.version,
+    'model': dataJson.systemData?.system?.model,
+    'serial': dataJson.systemData?.system?.serial,
+    'uuid': dataJson.systemData?.system?.uuid
+  }
+
+  const baseboard = {
+    'manufacturer': dataJson.systemData?.system?.manufacturer,
+    'model':dataJson.systemData?.baseboard?.model,
+    'version':dataJson.systemData?.baseboard?.version,
+    'memMax':(dataJson.systemData?.baseboard?.memMax) / (1024 ** 3),
+    'memSlots':dataJson.systemData?.baseboard?.memSlots
+  }
+
+  const cpu = {
+    'brand':dataJson.cpuData?.info?.brand,
+    'manufacturer':dataJson.cpuData?.info?.manufacturer,
+    'socket':dataJson.cpuData?.info?.socket,
+    'physicalCores':dataJson.cpuData?.info?.physicalCores,
+    'cores':dataJson.cpuData?.info?.cores,
+    'speed':dataJson.cpuData?.info?.speed
+
+  }
+
   return (
     <main className="App">
 
@@ -151,10 +176,11 @@ const App = () => {
           <span className="title"><h2 style={{color: '#242323'}}><Cog /> General</h2></span>
 
           <div className="content">
-            <p style={{textAlign: 'center'}}>{dataJson.systemData?.system?.version}</p>
-            <p><strong>Model</strong> {dataJson.systemData?.system?.model}</p>
-            <p><strong>Serial</strong> {dataJson.systemData?.system?.serial}</p>
-            <p><strong>UUID</strong> {dataJson.systemData?.system?.uuid}</p>
+
+            {system.version && <p style={{textAlign: 'center'}}>{system.version}</p>}
+            {system.model && <p><strong>Model</strong> {system.model}</p>}
+            {system.serial && <p><strong>Serial</strong> {system.serial}</p>}
+            {system.uuid && <p><strong>UUID</strong> {system.uuid}</p>}
           </div>
 
         </div>
@@ -164,10 +190,10 @@ const App = () => {
           <span className="title"><h2 style={{color: '#2b0000'}}><LayoutDashboard /> Mainboard</h2></span>
 
           <div className="content">
-            <p><strong>Manufacturer</strong>: {dataJson.systemData?.system?.manufacturer}</p>
-            <p><strong>Model</strong>: {dataJson.systemData?.baseboard?.model} - {dataJson.systemData?.baseboard?.version}</p>
-            <p><strong>Max Memory</strong>: {dataJson.systemData?.baseboard?.memMax / (1024 ** 3)} GB Ram</p>
-            <p><strong>Memory Slots</strong>: {dataJson.systemData?.baseboard?.memSlots}</p>
+            {baseboard.manufacturer &&<p><strong>Manufacturer</strong>: {baseboard.manufacturer}</p>}
+            {baseboard.model &&<p><strong>Model</strong>: {baseboard.model} - {baseboard.version}</p>}
+            {baseboard.memMax &&<p><strong>Max Memory</strong>: {baseboard.memMax} GB Ram</p>}
+            {baseboard.memSlots &&<p><strong>Memory Slots</strong>: {baseboard.memSlots}</p>}
           </div>
 
         </div>
@@ -177,12 +203,12 @@ const App = () => {
           <span className="title"><h2 style={{color: '#023b07'}}><Cpu /> CPU</h2></span>
 
           <div className="content">
-            <p><strong>Name</strong>: {dataJson.cpuData?.info?.brand}</p>
-            <p><strong>Brand</strong>: {dataJson.cpuData?.info?.manufacturer}</p>
-            <p><strong>Package</strong>: {dataJson.cpuData?.info?.socket}</p>
-            <p><strong>Cores</strong>: {dataJson.cpuData?.info?.physicalCores}</p>
-            <p><strong>Threads</strong>: {dataJson.cpuData?.info?.cores}</p>
-            <p><strong>Speed</strong>: {(dataJson.cpuData?.info?.speed || 0).toFixed(2)} @GHz</p>
+            {cpu.brand &&<p><strong>Name</strong>: {cpu.brand}</p>}
+            {cpu.manufacturer &&<p><strong>Brand</strong>: {cpu.manufacturer}</p>}
+            {cpu.socket &&<p><strong>Package</strong>: {cpu.socket}</p>}
+            {cpu.physicalCores &&<p><strong>Cores</strong>: {cpu.physicalCores}</p>}
+            {cpu.cores &&<p><strong>Threads</strong>: {cpu.cores}</p>}
+            {cpu.speed &&<p><strong>Speed</strong>: {(cpu.speed || 0).toFixed(2)} @GHz</p>}
           </div>
 
         </div>
@@ -207,13 +233,13 @@ const App = () => {
               
               <div key={index}>
                 <h3>GPU {index + 1} </h3>
-                <p><strong>Name</strong>: {data.name}</p>
-                <p><strong>Vendor</strong>: {data.vendor}</p>
-                <p><strong>VRAM</strong>: {(data.vram || 0).toFixed(0)} MB</p>
-                <p><strong>Dynamic VRAM</strong>: {JSON.stringify(data.vramDynamic)}</p>
-                <p><strong>Power Limit</strong>: {data.powerLimit} W</p>
-                <p><strong>{data.vendor} driver version</strong>: {data.driverVersion}</p>
-                <p><strong>Sub Device ID</strong>: {data.subDeviceId}</p>
+                {data.name &&<p><strong>Name</strong>: {data.name}</p>}
+                {data.vendor &&<p><strong>Vendor</strong>: {data.vendor}</p>}
+                {data.vram &&<p><strong>VRAM</strong>: {(data.vram || 0).toFixed(0)} MB</p>}
+                {data.vramDynamic &&<p><strong>Dynamic VRAM</strong>: {JSON.stringify(data.vramDynamic)}</p>}
+                {data.powerLimit &&<p><strong>Power Limit</strong>: {data.powerLimit} W</p>}
+                {data.driverVersion &&<p><strong>{data.vendor} driver version</strong>: {data.driverVersion}</p>}
+                {data.subDeviceId &&<p><strong>Sub Device ID</strong>: {data.subDeviceId}</p>}
 
                 {
                 
@@ -284,14 +310,14 @@ const App = () => {
               return (
               <div key={index}>
                 <h3>{index + 1}</h3>
-                <p><strong>Name</strong>: {data.name}</p>
-                <p><strong>Brand</strong>: {data.vendor}</p>
-                <p><strong>Type</strong>: {data.type}</p>
-                <p><strong>Interface Type</strong>: {data.interfaceType}</p>
-                <p>{data.bytesPerSector} Bytes per sector</p>
-                <p>{data.sectorsPerTrack} Sector per track</p>
-                <p><strong>Total Tracks:</strong> {String(data.totalTracks)}</p> 
-                <p><strong>Total Sectors:</strong> {String(data.totalSectors)}</p>
+                {data.name && <p><strong>Name</strong>: {data.name}</p>}
+                {data.vendor &&<p><strong>Brand</strong>: {data.vendor}</p>}
+                {data.type &&<p><strong>Type</strong>: {data.type}</p>}
+                {data.interfaceType &&<p><strong>Interface Type</strong>: {data.interfaceType}</p>}
+                {data.bytesPerSector &&<p>{data.bytesPerSector} Bytes per sector</p>}
+                {data.sectorsPerTrack &&<p>{data.sectorsPerTrack} Sector per track</p>}
+                {data.totalTracks &&<p><strong>Total Tracks:</strong> {String(data.totalTracks)}</p>}
+                {data.totalSectors &&<p><strong>Total Sectors:</strong> {String(data.totalSectors)}</p>}
 
                 <div className="representations">
 
@@ -323,11 +349,11 @@ const App = () => {
 
               <div key={index}>
                 <h3>{index + 1}</h3>
-                <p><strong>Slot placed in motherboard</strong>: {data.bank}</p>
-                <p><strong>Brand</strong>: {data.manufacturer}</p>
-                <p><strong>Size</strong>: {data.size / (1024 ** 2)} MB</p>
-                <p><strong>Frequency in use</strong> (Clock Speed): {data.clockSpeed} Mhz</p>
-                <p><strong>Form Factor</strong>: {data.formFactor}</p>
+                {data.bank &&<p><strong>Slot placed in motherboard</strong>: {data.bank}</p>}
+                {data.manufacture &&<p><strong>Brand</strong>: {data.manufacturer}</p>}
+                {data.size &&<p><strong>Size</strong>: {data.size / (1024 ** 2)} MB</p>}
+                {data.clockSpeed &&<p><strong>Frequency in use</strong> (Clock Speed): {data.clockSpeed} Mhz</p>}
+                {data.formFactor &&<p><strong>Form Factor</strong>: {data.formFactor}</p>}
 
               </div>
             ))}
