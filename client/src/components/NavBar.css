@@ -36,6 +36,7 @@ nav .menuButton{
     overflow: hidden;
     white-space: nowrap;
     box-shadow: 0 0 5px black;
+    flex-shrink: 0;
 }
 
 nav .icons > *:hover{
@@ -52,7 +53,7 @@ nav .icons{
     padding: 10px;
     border-radius: 30px;
     transition: background-color .5s ease;
-    width: 28vw;
+    width: fit-content;
 }
 
 nav .icons:hover{
@@ -90,8 +91,9 @@ nav .gpu *{color:#36a44d ;}
 nav .disks *{color: #4b3302 ;}
 nav .memory *{color: #759704;}
 nav .connection *{color: #047c7e;}
+nav .advanced *{color: black;}
 
-@media screen and (width < 1250px){
+@media screen and (max-width: 1250px) {
 
     nav {
         justify-content: flex-end;

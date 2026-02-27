@@ -135,6 +135,42 @@ const App = () => {
 
   }
 
+  const renderAdvancedDataRecursively = (data: any, level: number = 0): React.ReactNode => {
+  if (typeof data !== 'object' || data === null) {
+    return <span style={{ color: '#555' }}>{String(data)}</span>;
+  }
+
+  return Object.entries(data).map(([key, value], index) => {
+    const isObject = typeof value === 'object' && value !== null;
+    
+    const fontSize = level === 0 ? '1.5rem' : level === 1 ? '1.2rem' : '1rem';
+    const marginLeft = level === 0 ? '0px' : '20px';
+
+    if (isObject) {
+  
+      return (
+        <details key={index} style={{ marginLeft:'5px', margin: '10px 0' }}>
+          
+          <summary style={{ fontSize, cursor: 'pointer', fontWeight: 'bold', outline: 'none' }} className="advancedItens">
+            {key}
+          </summary>
+        
+          <div style={{ marginLeft: '10px', paddingLeft: '10px', borderLeft: '1px dashed #ccc' }}>
+            {renderAdvancedDataRecursively(value, level + 1)}
+          </div>
+          
+        </details>
+      );
+    }
+
+    return (
+      <div key={index} style={{ marginLeft, marginBottom: '2px' }}>
+        <b style={{ fontSize }}>{key}:</b> <span style={{ color: '#333' }}>{String(value)}</span>
+      </div>
+    );
+  });
+};
+
   return (
     <main className="App">
 
@@ -142,7 +178,7 @@ const App = () => {
 
       {/* <h1 className="titulo1">MY PC OVERVIEW</h1> */}
 
-      <img src={PageInitTitle} className="PageInitTitle"/>
+      <img src={PageInitTitle} className="PageInitTitle" style={{userSelect:'none'}}/>
 
       <h1 className="titulo2"><strong>{dataJson.systemData?.osInfo?.hostname}</strong> {chassiType} details: </h1>
 
@@ -441,9 +477,21 @@ const App = () => {
 
         </div>
 
-        
-
       </div>
+
+      <div className="advanced" id="advanced"style={{
+          width:'80%',
+          overflowWrap:'anywhere',
+          whiteSpace: 'normal',
+          boxSizing: 'border-box'
+          }}>
+
+          <h1 style={{ marginBottom: '30px', textAlign:'center' }}>Advanced Details</h1>
+          <p>
+            {renderAdvancedDataRecursively(dataJson)}
+          </p>
+
+        </div>
 
     </main>
   )
