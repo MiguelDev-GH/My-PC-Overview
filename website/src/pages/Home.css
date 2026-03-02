@@ -1,0 +1,89 @@
+* {
+  margin: 0;
+}
+
+body{
+  margin: 0;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+.App{
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+main{
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  flex-direction: column;
+}
+
+.head{
+  position: relative;
+  display: flex;
+  height: calc(100vh - 70px);
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  font-size: 80px;
+  user-select: none ;
+}
+
+.head > *{
+  position: relative;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.head > div > p{
+  position: relative;
+  padding: 40px;
+  animation: initPanimation 1s ease forwards;
+  transform: translateX(0);
+  overflow-x: hidden;
+}
+
+@keyframes initPanimation {
+    from{
+      transform: translateX(200%);
+      opacity: 0;
+    }
+    to{
+      transform: translateX(0);
+      opacity: 1;
+    }
+}
+
+.home > div > p::after{
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  background-color: rgba(0,0,0,.5);
+  width: 3px;
+}
+
+.home > img{
+  width: 800px;
+  animation: initImgAnimation 1s ease forwards;
+}
+
+@keyframes initImgAnimation {
+  from{opacity: 0;}
+  to{opacity: 1;}
+}
+
+.about{
+  position: relative;
+  padding: 0 80px;
+}
