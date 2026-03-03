@@ -2,13 +2,15 @@ import { DownloadIcon, ArrowDownToDot } from "lucide-react"
 import WindowsLogo from "../assets/windowsLogo.png"
 import MacOsLogo from "../assets/macOsLogo.png"
 import LinuxLogo from "../assets/linuxLogo.png"
+import Logo from "../../public/logo.png"
 import "./Download.css"
 
 const Download = () => {
     return (
         <main className="Download">
             <div className="home">
-                <DownloadIcon size={120} /> <h1>Download</h1>
+                <img src={Logo}/>
+                <span><DownloadIcon size={120} /> <h1>Download</h1></span>
             </div>
 
             <div className="downloads">
