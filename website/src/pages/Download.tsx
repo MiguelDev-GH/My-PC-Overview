@@ -1,4 +1,4 @@
-import { DownloadIcon } from "lucide-react"
+import { DownloadIcon, ArrowDownToDot } from "lucide-react"
 import WindowsLogo from "../assets/windowsLogo.png"
 import MacOsLogo from "../assets/macOsLogo.png"
 import LinuxLogo from "../assets/linuxLogo.png"
@@ -16,23 +16,24 @@ const Download = () => {
                     <img src={WindowsLogo} />
                     <div>
                         <h2>Windows</h2>
-                        <p>64bits</p>
-                        <p>32bits</p>
+                        <div><p>64bits</p><button><ArrowDownToDot /></button></div>
+                        <div><p>32bits</p><button><ArrowDownToDot /></button></div>
                     </div>
                 </div>
                 <div>
                     <img src={LinuxLogo} style={{'filter': 'brightness(1)'}}/>
                     <div>
                         <h2>Linux</h2>
-                        <p>64bits</p>
-                        <p>32bits</p>
-                        <p>arm</p>
+                        <div><p>64bits</p><button><ArrowDownToDot /></button></div>
+                        <div><p>32bits</p><button><ArrowDownToDot /></button></div>
                     </div>
                 </div>
                 <div>
                     <img src={MacOsLogo} />
                     <div>
                         <h2>Mac</h2>
+                        <div><p>64bits</p><button><ArrowDownToDot /></button></div>
+                        <div><p>Arm64</p><button><ArrowDownToDot /></button></div>
                     </div>
                 </div>
             </div>
