@@ -1,11 +1,9 @@
 import HomePic from "./../../../client/src/assets/PageInitTitle.png"
-import { Cpu, Gpu, MemoryStick, HardDrive, LayoutDashboard, Wifi } from 'lucide-react'
+import { Cpu, Gpu, MemoryStick, HardDrive, LayoutDashboard, Wifi, Server, Layout } from 'lucide-react'
 import "./Home.css"
 
 const Home = () => {
-  return <div className="Home">
-    
-    <main>
+  return <main className="Home">
 
         <div className="head" id="head">
           <img src={HomePic}></img>
@@ -68,11 +66,24 @@ const Home = () => {
 
           </div>
 
+
+          <div className="engine"> 
+
+            <div>
+
+              <h2><Server/> Node</h2>
+              <p>A lightweight local server built with <strong>Express</strong>. It uses the robust <code>systeminformation</code> and <code>os</code> Node libraries to talk directly to your operating system.</p>
+              <li><i data-lucide="check"></i> Deep hardware data collection on startup.</li>
+              <li> Ultra-fast endpoint for real-time data (temperatures, speeds).</li>
+              <li> Serves the static interface files.</li>
+
+            </div>
+
+          </div>
+
         </div>
 
     </main>
-    
-  </div>
 }
 
 export default Home

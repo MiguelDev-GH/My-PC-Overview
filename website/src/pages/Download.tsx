@@ -3,9 +3,11 @@ import "./Download.css"
 
 const Download = () => {
     return (
-        <div className="Download">
-            <DownloadIcon/>
-        </div>
+        <main className="Download">
+            <div className="home">
+                <DownloadIcon size={120} /> <h1>Download</h1>
+            </div>
+        </main>
     )
 }
 
