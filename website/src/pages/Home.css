@@ -1,4 +1,3 @@
-* {
   margin: 0;
 }
 
@@ -86,4 +85,37 @@ main{
 .about{
   position: relative;
   padding: 0 80px;
+  font-size: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 100px;
+}
+
+.overview{
+  position: relative;
+  width: 75%;
+}
+
+.grids{
+  display: grid;
+  grid-template-columns:repeat(3,auto);
+  gap: 40px;
+  width: 75%;
+}
+
+.grids > div{
+  box-shadow: 0 0 15px rgba(0,0,0,.15);
+  border-radius: 30px;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  gap: 30px;
+  font-size: 1.4rem;
+  transition: box-shadow .5s ease;
+}
+
+.grids > div:hover{
+  box-shadow: 0 0 20px rgba(0,0,0,.3);
 }
