@@ -73,7 +73,7 @@ const Home = () => {
 
               <h2><Server/> Node</h2>
               <p>A lightweight local server built with <strong>Express</strong>. It uses the robust <code>systeminformation</code> and <code>os</code> Node libraries to talk directly to your operating system.</p>
-              <li><i data-lucide="check"></i> Deep hardware data collection on startup.</li>
+              <li> Deep hardware data collection on startup.</li>
               <li> Ultra-fast endpoint for real-time data (temperatures, speeds).</li>
               <li> Serves the static interface files.</li>
 
