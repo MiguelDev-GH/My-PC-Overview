@@ -2,7 +2,6 @@ import React, { useEffect, useState, useRef } from "react"
 import { Cpu, Gpu, MemoryStick, HardDrive, LayoutDashboard, AppWindow, Computer, Cable, Wifi, UsersRound, Cog, Flame, Fan } from 'lucide-react'
 import NavBar from "./components/NavBar.tsx"
 import "./App.css"
-import PageInitTitle from "./assets/PageInitTitle.png"
 
 const App = () => {
 
@@ -151,12 +150,21 @@ const App = () => {
       return (
         <details key={index} style={{ marginLeft:'5px', margin: '10px 0' }}>
           
-          <summary style={{ fontSize, cursor: 'pointer', fontWeight: 'bold', outline: 'none' }} className="advancedItens">
-            {key}
+          <summary style={{
+            fontSize, cursor: 'pointer',
+            fontWeight: 'bold',
+            outline: 'none',
+            display: 'flex',
+            alignItems: 'baseline',
+            gap: '10px',
+            }} 
+            className="advancedItens"
+            >
+            {key.toUpperCase()} <p style={{fontWeight:200, textOverflow:'ellipsis', whiteSpace:'nowrap', overflow:'hidden', flex: 1}}>{JSON.stringify(value)}</p>
           </summary>
         
           <div style={{ marginLeft: '10px', paddingLeft: '10px', borderLeft: '1px dashed #ccc' }}>
-            {renderAdvancedDataRecursively(value, level + 1)}
+            {renderAdvancedDataRecursively(value, level + 1)}  
           </div>
           
         </details>
@@ -177,8 +185,6 @@ const App = () => {
       <NavBar/>
 
       {/* <h1 className="titulo1">MY PC OVERVIEW</h1> */}
-
-      <img src={PageInitTitle} className="PageInitTitle" style={{userSelect:'none'}}/>
 
       <h1 className="titulo2"><strong>{dataJson.systemData?.osInfo?.hostname}</strong> {chassiType} details: </h1>
 
@@ -288,13 +294,6 @@ const App = () => {
 
                     <div className="tempMeter">
                       <h2>Temperature</h2>
-                      <div className="tempMeterContainer">
-                        <div className="tempBackgroundGradient"></div>
-                        <div 
-                          className="tempLevelBar" 
-                          style={{ "--tempHeight": `${temperatureGpu}%` } as React.CSSProperties}
-                        ></div>
-                      </div>
                       <p><Flame />{temperatureGpu} °C</p>
                     </div>
 
@@ -369,7 +368,7 @@ const App = () => {
 
                   </div>
 
-                  <p><strong>{usedGB} / {totalGB} GB</strong></p>
+                  <p style={{'fontWeight': 200}}><strong>{usedGB} / {totalGB} GB</strong></p>
                   <p><b>({percentage}%)</b></p>
 
                 </div>
