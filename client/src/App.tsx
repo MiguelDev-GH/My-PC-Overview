@@ -12,6 +12,8 @@ const App = () => {
 
   const [chassiType, setChassiType] = useState('')
 
+  const [gpuQuantity,setGpuQuantity] = useState(0)
+
   const [InitError, setInitError] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
 
@@ -51,6 +53,7 @@ const App = () => {
         if (isMounted){
 
           setChassiType((data.systemData?.chassis?.type || '').toLowerCase())
+          setGpuQuantity((Object.keys(data.gpuData?.graphics?.controllers)).length)
 
           if (data?.networkData && data?.networkData?.interfaces) {
             Object.values(data.networkData.interfaces || {}).map((iface: any) => {
@@ -277,7 +280,7 @@ const App = () => {
               return (
               
               <div key={index}>
-                <h3>GPU {index + 1} </h3>
+                <h3>GPU {gpuQuantity > 1 && index + 1} - {data.bus} </h3>
                 {data.name &&<p><strong>Name</strong>: {data.name}</p>}
                 {data.vendor &&<p><strong>Vendor</strong>: {data.vendor}</p>}
                 {data.vram &&<p><strong>VRAM</strong>: {(data.vram || 0).toFixed(0)} MB</p>}
