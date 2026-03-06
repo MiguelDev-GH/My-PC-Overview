@@ -1,5 +1,5 @@
 import HomePic from "./../../../client/src/assets/PageInitTitle.png"
-import { Cpu, Gpu, MemoryStick, HardDrive, LayoutDashboard, Wifi, Server, Layout } from 'lucide-react'
+import { Cpu, Gpu, MemoryStick, HardDrive, LayoutDashboard, Wifi, Server } from 'lucide-react'
 import "./Home.css"
 
 const Home = () => {
