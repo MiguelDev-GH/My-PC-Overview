@@ -1,18 +1,25 @@
+import { useState } from "react"
 import "./Documentation.css"
+import Start from "./documentation/start"
+import GettingStarted from "./documentation/gettingstarted"
 
 const Documentation = () => {
+
+    const [tab,setTab] = useState("Start")
+
     return <main className="Documentation">
-        <h1 style={{fontWeight:300, paddingTop:'20px'}}>Documentation</h1>
+
+        <aside>
+            <h1 style={{ padding:'20px'}}>Documentation</h1>
+            <section>
+                <p onClick={()=>setTab("Start")}>About</p>
+                <p onClick={()=>setTab("GettingStarted")}>Getting started</p>
+            </section>
+        </aside>
 
         <div className="Details">
-
-            <aside>
-                <p>Aside</p>
-            </aside>
-
-            <h2 className="title">Titulo</h2>
-            <p>detalhes</p>
-
+            {tab === "Start" && <Start/>}
+            {tab === "GettingStarted" && <GettingStarted/>}
         </div>
 
     </main>
