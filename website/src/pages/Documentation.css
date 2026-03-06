@@ -1,0 +1,13 @@
+.details{
+    display: flex;
+    flex-direction: row;
+}
+
+aside{
+    border: 1px solid rgba(0,0,0,.5);
+    position: fixed;
+    height: 100%;
+    top: 60px;
+    left: 0;
+    flex-grow: 1;
+}

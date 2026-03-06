@@ -1,4 +1,4 @@
-import {Github} from "lucide-react"
+import {Github, BookOpenText} from "lucide-react"
 import { Link } from "react-router-dom"
 import "./NavBar.css"
 
@@ -8,6 +8,7 @@ const NavBar = () => {
         <ul>
             <li><Link to="/"> Home  </Link></li>
             <li><Link to="/download"> Download </Link></li>
+            <li><Link to="/documentation"><BookOpenText/></Link></li>
         </ul>
     </nav>
 }
