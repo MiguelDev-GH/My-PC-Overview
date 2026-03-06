@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react"
-import { Cpu, Gpu, MemoryStick, HardDrive, LayoutDashboard, AppWindow, Computer, Cable, Wifi, UsersRound, Cog, Flame, Fan } from 'lucide-react'
+import { Cpu, Gpu, MemoryStick, HardDrive, LayoutDashboard, AppWindow, Computer, Cable, Wifi, UsersRound, Cog, Flame, Fan, CloudRain } from 'lucide-react'
 import NavBar from "./components/NavBar.tsx"
 import "./App.css"
 
@@ -283,6 +283,7 @@ const App = () => {
                 <h3>GPU {gpuQuantity > 1 && index + 1} - {data.bus} </h3>
                 {data.name &&<p><strong>Name</strong>: {data.name}</p>}
                 {data.vendor &&<p><strong>Vendor</strong>: {data.vendor}</p>}
+                {data.model && <p><strong>Model</strong>: {data.model}</p>}
                 {data.vram &&<p><strong>VRAM</strong>: {(data.vram || 0).toFixed(0)} MB</p>}
                 {data.vramDynamic &&<p><strong>Dynamic VRAM</strong>: {JSON.stringify(data.vramDynamic)}</p>}
                 {data.powerLimit &&<p><strong>Power Limit</strong>: {data.powerLimit} W</p>}
@@ -295,14 +296,16 @@ const App = () => {
                    
                   <div className="representations">
 
-                    <div className="tempMeter">
+                    {temperatureGpu ? <div className="tempMeter">
                       <h2>Temperature</h2>
                       <p><Flame />{temperatureGpu} °C</p>
                     </div>
+                    : <p style={{textAlign:'center', color:"rgba(100,0,0,1"}}>Not possible to show the Temperature</p>
+                    }
 
                     
 
-                    <div className="gpuMemory">
+                    {(memoryUsed && memoryTotal) ? <div className="gpuMemory">
                       <h2>VRAM Usage</h2>
                       <div className="gpuMemoryRepresentation" style={
                         {
@@ -317,13 +320,22 @@ const App = () => {
                       <p><span style={{color:'#444444'}}>{memoryUsed} / {memoryTotal} <b>MB </b></span></p> 
 
                     </div>
+                    : <p style={{textAlign:'center', color:"rgba(100,0,0,1"}}>Not possible to show the Vram</p>
+                    }
 
                   </div>
 
-                  <p><strong>Clock Core</strong>: {clockCore} MHz</p>
-                  <p><strong>Clock Memory</strong>: {clockMemory} MHz</p>
 
-                  <p><Fan /> <strong>Fan Speed</strong>: {fanSpeed}</p>
+                    {(!(memoryUsed && memoryTotal) || !temperatureGpu) &&
+                      <a href="https://google.com" target="_blank" style={{position:'relative', width:'100%', boxSizing:'border-box', textAlign:"center", textDecoration:"underline", color:"blue"}}>
+                        <p>Verify documentation</p>
+                      </a>
+                    }
+
+                  {clockCore && <p><strong>Clock Core</strong>: {clockCore} MHz</p>}
+                  {clockMemory && <p><strong>Clock Memory</strong>: {clockMemory} MHz</p>}
+
+                  {fanSpeed && <p><Fan /> <strong>Fan Speed</strong>: {fanSpeed}</p>}
 
                 </span>
                 : <p>Loading real-time data...</p>
