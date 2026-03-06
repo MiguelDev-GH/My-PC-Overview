@@ -4,7 +4,7 @@
 
 ## 🚀 Features
 
-- **Real-time Monitoring**: Live updates for CPU speed, temperature, RAM usage, and VRAM usage.
+- **Real-time Monitoring**: Live updates temperature, RAM usage, and VRAM usage.
 - **Detailed Hardware Insights**: 
   - **CPU**: Brand, manufacturer, socket, cores, and thread counts.
   - **GPU**: Model, VRAM, driver version, and real-time performance metrics (Clock, Fan speed, Temperature).
@@ -16,50 +16,20 @@
 
 ## 🛠️ Built With
 
+### Front
+
 - **[React](https://reactjs.org/)**: Powers the responsive and dynamic user interface.
+- **[Lucide React](https://lucide.dev/)**: Provides clean and modern iconography for better visual clarity.
+
+### Back
+  
 - **[Node.js](https://nodejs.org/) & [Express](https://expressjs.com/)**: A robust backend that serves system data through a custom API.
 - **[systeminformation](https://systeminformation.io/)**: The core library used to fetch detailed and reliable system data.
-- **[Lucide React](https://lucide.dev/)**: Provides clean and modern iconography for better visual clarity.
 
 ### Why these tools?
 - **Speed & Efficiency**: Node.js and React ensure the application remains snappy even with frequent data updates.
 - **Reliability**: `systeminformation` is one of the most comprehensive libraries for hardware data, supporting a wide range of platforms.
 - **User Experience**: Lucide icons and React components create a seamless, professional-looking dashboard.
-
-## 🚦 Getting Started
-
-To run **My PC Overview** on your local machine, follow these steps:
-
-### Prerequisites
-- [Node.js](https://nodejs.org/) (v18 or higher recommended)
-- npm (comes with Node.js)
-
-### Installation & Running
-
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/your-username/my-pc-overview.git
-   cd my-pc-overview
-   ```
-
-2. **Setup the Server**:
-   Navigate to the `server` directory and install dependencies:
-   ```bash
-   cd server
-   npm install
-   ```
-
-3. **Run the Application**:
-   Start the server:
-   ```bash
-   npm start
-   ```
-
-4. **Access the Dashboard**:
-   Once started, open your browser and go to:
-   `http://localhost:3067`
-
-*Note: Do not close the terminal window while using the application, as it acts as the data provider for the dashboard.*
 
 ## 📄 License
 
