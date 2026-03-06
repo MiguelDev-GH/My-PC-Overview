@@ -1,4 +1,4 @@
-import { Cpu, Gpu, MemoryStick, HardDrive, LayoutDashboard, Wifi, Github, Menu, Info } from 'lucide-react'
+import { Cpu, Gpu, MemoryStick, HardDrive, LayoutDashboard, Wifi, Menu, Info, BookOpenText } from 'lucide-react'
 import "./NavBar.css"
 import React, { useEffect, useState } from 'react'
 
@@ -28,7 +28,7 @@ const NavBar = () => {
         } as React.CSSProperties} onClick={()=>setAtivo(false)} ></div>}
             
             
-        {!mobile && <a href="https://github.com/MiguelDev-GH/My-PC-Overview" target='blank'> <Github/> </a>}
+        {!mobile && <a href="https://github.com/MiguelDev-GH/My-PC-Overview" target='blank' className="documentationNav"><BookOpenText/> Documentation </a>}
 
         <Menu className='menuButton' onClick={menuActive}/>
 
@@ -43,7 +43,7 @@ const NavBar = () => {
             <a className='memory' href='#memory' onClick={()=>setAtivo(false)}><MemoryStick /> <p>Memory</p></a>
             <a className='connection' href='#connection' onClick={()=>setAtivo(false)}><Wifi /> <p>Connection</p></a>
             <a className='advanced' href='#advanced' onClick={()=>setAtivo(false)}><Info /> <p>Advanced</p></a>
-            {mobile && <a href="https://github.com/MiguelDev-GH/My-PC-Overview" target='blank' className='github'> <Github/> </a>}
+            {mobile && <a href="https://github.com/MiguelDev-GH/My-PC-Overview" target='blank' className='documentation'> Documentation </a>}
         </div>
     </nav>
 }

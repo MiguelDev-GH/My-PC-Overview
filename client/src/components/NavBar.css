@@ -93,6 +93,22 @@ nav .memory *{color: #759704;}
 nav .connection *{color: #047c7e;}
 nav .advanced *{color: black;}
 
+nav .icons > .documentation{
+    font-weight: 300;
+}
+
+nav .documentationNav{
+    font-weight: 300;
+    box-shadow: 0 0 0;
+    gap: 10px;
+    text-decoration: none;
+    background:none;
+}
+
+nav .documentationNav:hover{
+    transform: scale(1.01);
+}
+
 @media screen and (max-width: 1250px) {
 
     nav {
@@ -145,7 +161,7 @@ nav .advanced *{color: black;}
         box-shadow: 0 0 5px rgba(0, 0, 0,0.1);
     }
 
-    nav .icons > .github{
+    nav .icons > .documentation{
         align-self: center;
     }
 

@@ -320,15 +320,15 @@ const App = () => {
                       <p><span style={{color:'#444444'}}>{memoryUsed} / {memoryTotal} <b>MB </b></span></p> 
 
                     </div>
-                    : <p style={{textAlign:'center', color:"rgba(100,0,0,1"}}>Not possible to show the Vram</p>
+                    : <p style={{textAlign:'center', color:"rgba(100,0,0,1"}}>Not possible to show VRAM</p>
                     }
 
                   </div>
 
 
                     {(!(memoryUsed && memoryTotal) || !temperatureGpu) &&
-                      <a href="https://google.com" target="_blank" style={{position:'relative', width:'100%', boxSizing:'border-box', textAlign:"center", textDecoration:"underline", color:"blue"}}>
-                        <p>Verify documentation</p>
+                      <a href="https://google.com" target="_blank" style={{position:'relative', width:'100%', boxSizing:'border-box', textAlign:"center", color:"blue"}}>
+                        <p style={{textDecoration:"underline"}}>Error? Verify documentation</p>
                       </a>
                     }
 
