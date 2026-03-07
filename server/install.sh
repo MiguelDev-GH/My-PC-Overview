@@ -3,26 +3,32 @@
 # Configuration
 APP_NAME="pc-overview"
 INSTALL_DIR="/opt/$APP_NAME"
-REPO_URL="https://github.com/YOUR_USERNAME/My-PC-Overview.git"
+# Link público (não pede senha)
+REPO_URL="https://github.com/MiguelDev-GH/My-PC-Overview.git"
 
-echo "Starting My PC Overview installation..."
+echo "🚀 Starting My PC Overview installation..."
 
 # 1. Clone or Update files
-if [ -d "$INSTALL_DIR" ]; then
-    echo "common: Updating existing installation..."
-    sudo rm -rf $INSTALL_DIR
-fi
+echo "common: Cleaning old files..."
+sudo rm -rf $INSTALL_DIR
 
 echo "common: Cloning repository from GitHub..."
+# Clonando em modo silencioso e público
 sudo git clone $REPO_URL $INSTALL_DIR
 
+# Verifica se o clone deu certo antes de prosseguir
+if [ ! -d "$INSTALL_DIR" ]; then
+    echo "❌ Error: Failed to clone repository. Check your internet connection."
+    exit 1
+fi
+
 # 2. Install dependencies
-echo "Installing server dependencies (production mode)..."
-cd $INSTALL_DIR/server
-sudo npm install --production
+echo "📦 Installing server dependencies..."
+cd $INSTALL_DIR/server || exit
+sudo npm install --omit=dev
 
 # 3. Create global terminal command
-echo "Creating symbolic link in /usr/local/bin..."
+echo "🔗 Creating symbolic link in /usr/local/bin..."
 sudo bash -c "cat > /usr/local/bin/$APP_NAME" <<EOF
 #!/bin/bash
 cd $INSTALL_DIR/server
@@ -30,8 +36,8 @@ node app.js
 EOF
 sudo chmod +x /usr/local/bin/$APP_NAME
 
-# 4. Create Desktop Entry (Application Menu)
-echo "Creating desktop shortcut..."
+# 4. Create Desktop Entry
+echo "🖥️ Creating desktop shortcut..."
 sudo bash -c "cat > /usr/share/applications/$APP_NAME.desktop" <<EOF
 [Desktop Entry]
 Version=1.0
@@ -39,10 +45,10 @@ Type=Application
 Name=My PC Overview
 Comment=Local Hardware Monitor
 Exec=$APP_NAME
-Icon=$INSTALL_DIR/icon.png
+Icon=$INSTALL_DIR/server/icon.png
 Terminal=true
 Categories=System;Utility;
 EOF
 
 echo "✅ Installation completed successfully!"
-echo "You can now launch the app by typing '$APP_NAME' in your terminal or searching for it in your applications menu."
+echo "You can now launch the app by typing '$APP_NAME' in your terminal."
