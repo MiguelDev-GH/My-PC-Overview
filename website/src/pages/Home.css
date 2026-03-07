@@ -2,6 +2,7 @@ body{
   margin: 0;
   box-sizing: border-box;
   overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .App{
@@ -19,6 +20,7 @@ main{
   font-family: "Roboto", sans-serif;
   font-weight: 300;
   flex-direction: column;
+  overflow-y: auto;
 }
 
 .head{
