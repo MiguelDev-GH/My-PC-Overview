@@ -1,48 +1,52 @@
+import React from 'react';
+
 const GettingStarted = () => {
     return (
         <div className='content'>
             <h1>Getting Started</h1>
             <p>
-                Este guia ajudará você a configurar e executar o <strong>PC Overview</strong> pela primeira vez. 
-                A aplicação foi projetada para ser portátil e eficiente, fornecendo dados de hardware em tempo real.
+                This guide will help you set up and run <strong>PC Overview</strong> for the first time. 
+                The application is designed to be portable and efficient, providing real-time hardware metrics.
             </p>
 
             <h1>Installation</h1>
             <p>
-                A aplicação é distribuída como um arquivo executável (<code>.exe</code>) gerado via PKG. 
-                Siga os passos abaixo:
+                The application is distributed as an executable file (<code>.exe</code>) generated via PKG. 
+                Follow the steps below:
             </p>
             <ul>
-                <li>Baixe a versão mais recente do executável.</li>
-                <li>Coloque o arquivo em uma pasta de sua preferência.</li>
-                <li>Certifique-se de que a porta <strong>3067</strong> está livre no seu firewall.</li>
+                <li>Download the latest version of the executable.</li>
+                <li>Place the file in a folder of your choice.</li>
+                <li>Ensure the network port you intend to use is open in your firewall.</li>
             </ul>
 
             <h1>Running the Application</h1>
             <p>
-                Ao executar o arquivo, o servidor Node.js será iniciado e você verá uma janela de terminal com as seguintes informações:
+                When you run the file, the Node.js server will initialize, and a terminal window will appear with the following information:
             </p>
             <ul>
-                <li><strong>Server Status:</strong> Uma mensagem confirmando que o servidor está rodando em <code>http://localhost:3067</code>.</li>
-                <li><strong>System Access:</strong> O servidor começará a acessar os componentes do sistema imediatamente.</li>
-                <li><strong>Warning:</strong> É fundamental <strong>não fechar a janela do terminal</strong>, pois ela é o motor que fornece os dados para a interface web.</li>
+                <li><strong>Port Selection:</strong> The user defines the communication port upon launching the application.</li>
+                <li><strong>Server Status:</strong> A message confirming the server is running at <code>http://localhost:[YOUR_PORT]</code>.</li>
+                <li><strong>System Access:</strong> The server will immediately begin accessing system components to gather data.</li>
+                <li><strong>Warning:</strong> It is critical <strong>not to close the terminal window</strong>, as it serves as the engine providing data to the web interface.</li>
             </ul>
 
             <h1>First Access</h1>
             <p>
-                Com o servidor rodando, abra seu navegador e acesse <code>http://localhost:3067</code>. 
-                A aplicação React carregará os detalhes do sistema através da API interna. 
-                Se for a primeira execução, o sistema pode levar alguns segundos para coletar todos os dados iniciais do hardware.
+                With the server running, open your browser and go to the address shown in the terminal (e.g., <code>http://localhost:3067</code>). 
+                The React application will load system details via the internal API. 
+                On the first run, it may take a few seconds to collect all initial hardware data.
             </p>
 
-            <h1>Troubleshooting</h1>
+            <h1>Troubleshooting & Permissions</h1>
             <p>
-                Caso encontre uma tela de erro durante a inicialização:
+                If you encounter an error screen or missing information:
             </p>
             <ul>
-                <li>Verifique se o servidor (janela do terminal) ainda está aberto.</li>
-                <li>Certifique-se de que você tem permissões de administrador, necessárias para que o <code>systeminformation</code> acesse sensores de temperatura e GPU.</li>
-                <li>Recarregue a página caso a rede local tenha oscilado.</li>
+                <li><strong>Server Check:</strong> Verify if the terminal window is still open and active.</li>
+                <li><strong>Admin Rights:</strong> Ensure you run the application with <strong>Administrator privileges</strong> (Windows) or <strong>sudo</strong> (Linux). This is required for <code>systeminformation</code> to access hardware sensors like GPU and CPU temperatures.</li>
+                <li><strong>Linux Specifics:</strong> Some hardware details may remain hidden on Linux if the user lacks direct access to <code>/dev/</code> or <code>/sys/</code> directories.</li>
+                <li><strong>Network:</strong> Refresh the page if the connection times out or the local network fluctuates.</li>
             </ul>
         </div>
     );

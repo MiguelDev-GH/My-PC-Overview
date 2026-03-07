@@ -1,7 +1,7 @@
 const Start = () => {
     return (
         <div className='content'>
-            <h1>PC Overview: Getting Started</h1>
+            <h1>PC Overview</h1>
             <p>
                 Welcome to the <strong>PC Overview</strong> documentation. This application is a real-time hardware monitoring 
                 solution that bridges the gap between low-level system metrics and a modern web interface. 
@@ -30,7 +30,7 @@ const Start = () => {
 
             <h1>Initialization & Data Flow</h1>
             <p>
-                Once the server starts at <code>http://localhost:3067</code>, the React frontend begins fetching data through 
+                Once the server starts, the React frontend begins fetching data through 
                 two specific endpoints:
             </p>
             <ul>
