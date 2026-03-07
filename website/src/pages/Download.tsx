@@ -24,24 +24,19 @@ const Download = () => {
                     <img src={WindowsLogo} />
                     <div>
                         <h2>Windows</h2>
-                        <div><p>64bits</p><button><ArrowDownToDot /></button></div>
-                        <div><p>32bits</p><button><ArrowDownToDot /></button></div>
+                        <div><p>64bits</p> <a href="../executables/mpco-win-x64.exe" download="PC Overview.exe"><button><ArrowDownToDot /></button></a></div>
                     </div>
                 </div>
+                
                 <div>
-                    <img src={LinuxLogo} style={{'filter': 'brightness(1)'}}/>
+                    <span className="images">
+                        <img src={LinuxLogo} style={{'filter': 'brightness(1)'}}/>
+                        <p>&</p>
+                        <img src={MacOsLogo} />
+                    </span>
                     <div>
-                        <h2>Linux</h2>
-                        <div><p>64bits</p><button><ArrowDownToDot /></button></div>
-                        <div><p>32bits</p><button><ArrowDownToDot /></button></div>
-                    </div>
-                </div>
-                <div>
-                    <img src={MacOsLogo} />
-                    <div>
-                        <h2>Mac</h2>
-                        <div><p>64bits</p><button><ArrowDownToDot /></button></div>
-                        <div><p>Arm64</p><button><ArrowDownToDot /></button></div>
+                        <h2>Linux & Mac</h2>
+                        <code>curl -sL https://raw.githubusercontent.com/MiguelDev-GH/My-PC-Overview/main/server/install.sh | sudo bash</code>
                     </div>
                 </div>
             </div>

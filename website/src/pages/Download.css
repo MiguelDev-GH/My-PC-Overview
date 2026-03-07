@@ -67,8 +67,9 @@ main {
 }   
 
 .downloads{
+    position: relative;
     display: grid;
-    grid-template-columns:  repeat(3,minmax(100px,500px));
+    grid-template-columns: repeat(2,minmax(100px,500px));
     gap: 50px;
     /* color: white; */
     margin-bottom: 600px;
@@ -80,6 +81,16 @@ main {
     flex-direction: column;
     align-items: center;
     gap: 50px;
+}
+
+.downloads > div > .images{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content:center;
+    gap: 10px;
+    font-size: 1.5rem;
 }
 
 .downloads > div > div{
@@ -104,7 +115,7 @@ main {
     font-weight: 300;
 }
 
-.downloads > div > img{
+.downloads img{
     filter: brightness(0);
     height: 50px;
 }
@@ -118,7 +129,7 @@ main {
     padding: 10px 0;
 }
 
-.downloads > div > div > div > button{
+.downloads > div > div > div > a > button{
     border: none;
     padding: 5px;
     color: white;
@@ -128,7 +139,7 @@ main {
     transition: background-color .5s ease, color .5s ease, border-color 5s ease;
 }
 
-.downloads > div > div > div > button:hover{
+.downloads > div > div > div > a > button:hover{
     color: black;
     background-color: white;
 }
