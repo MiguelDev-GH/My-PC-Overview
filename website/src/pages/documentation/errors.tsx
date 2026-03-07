@@ -1,5 +1,3 @@
-import React from 'react';
-
 const Errors = () => {
     return (
         <div className='content'>
