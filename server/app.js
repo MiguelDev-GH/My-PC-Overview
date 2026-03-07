@@ -2,14 +2,16 @@ const express = require("express")
 const path = require("path")
 const open = require("open")
 const app = express()
-const PORT = 3067
+
+const { askForPort } = require("./portVerification.js")
 
 const cors = require('cors');
 app.use(cors())
 
 const { OsAllDetails, getQuickUpdate } = require("./osDetails")
 const { type } = require("os")
-const { cpuCurrentSpeed, graphics } = require("systeminformation")
+const { cpuCurrentSpeed, graphics } = require("systeminformation");
+const { resolve } = require("dns");
 
 app.use(express.static(path.join(__dirname, "client")));
 
@@ -18,7 +20,7 @@ app.get("/api/osDetails", async (req,res)=>{
         const data = await OsAllDetails()
         res.json(data)
     } catch (error) {
-        res.status(500).send("Erro ao carregar os dados: ",error)
+        res.status(500).send("Error to load data: ",error)
     }
 })
 
@@ -27,7 +29,7 @@ app.get("/api/update", async (req, res) => {
         const quickData = await getQuickUpdate();
         res.json(quickData);
     } catch (error){
-        res.status(500).json({ "Erro to update data":error  });
+        res.status(500).json({ "Error to update data":error  });
     }
 });
 
@@ -35,21 +37,29 @@ app.get('/*splat', (req, res) => {
   res.sendFile(path.join(__dirname, "client", "index.html"));
 });
 
-app.listen(3067, async ()=>{
+async function init() {
 
-    console.log("PC Overview opening... \n")
+    const PORT = await askForPort();
 
-    console.log(`========================================== \n`);
-    console.log(`    Server running at http://localhost:${PORT}`);
-    console.log(`    DON'T CLOSE THIS WINDOW!`);
-    console.log(`    Accessing system... \n`);
-    console.log(`==========================================\n`);
-    console.log(`    To stop the application, close this window or terminate the process.`);
+    app.listen(PORT, async ()=>{
 
-    // try {
-    //     await open(`http://localhost:${PORT}`);
-    // } catch (err) {
-    //     console.log("ERROR: Could not open localhost in browser.\n");
-    //     console.log(err)
-    // }
-})
+        console.log("PC Overview opening... \n")
+
+        console.clear()
+        console.log(`========================================== \n`);
+        console.log(`    Server running at http://localhost:${PORT}`);
+        console.log(`    DON'T CLOSE THIS WINDOW!`);
+        console.log(`    Accessing system... \n`);
+        console.log(`==========================================\n`);
+        console.log(`    To stop the application, close this window or terminate the process.`);
+
+        try {
+                await open(`http://localhost:${PORT}`);
+        } catch (err) {
+                console.log("ERROR: Could not open localhost in browser.\n");
+                console.log(err)
+        }
+    })   
+}
+
+init()

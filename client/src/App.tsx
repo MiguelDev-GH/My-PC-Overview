@@ -5,7 +5,7 @@ import "./App.css"
 
 const App = () => {
 
-  const [lightTheme,setLightTheme] = useState(window.matchMedia('(prefers-color-scheme: light)').matches)
+  const lightTheme = window.matchMedia('(prefers-color-scheme: light)').matches
 
   const [dataJson, seDataJson] = useState<any>(null)
   const [updatedDataJson, setUpdatedDataJson] = useState<any>(null)
@@ -37,8 +37,7 @@ const App = () => {
 
     async function loadData() {
       try {
-
-        const response = await fetch("/api/osDetails")
+        const response = await fetch(`/api/osDetails`)
 
         if (!response.ok) {
           const errorText = await response.text()
@@ -47,15 +46,15 @@ const App = () => {
 
         const data = await response.json()
 
-        const response2 = await fetch("/api/update");
+        const response2 = await fetch(`/api/update`);
 
         if (!response2.ok) throw new Error(`Error HTTP: ${response2.status}`);
         const updatedData = await response2.json();
 
         if (isMounted){
 
-          setChassiType((data.systemData?.chassis?.type || '').toLowerCase())
-          setGpuQuantity((Object.keys(data.gpuData?.graphics?.controllers)).length)
+        setChassiType((data.systemData?.chassis?.type || '').toLowerCase())
+        setGpuQuantity(Object.keys(data.gpuData?.graphics?.controllers || {}).length)
 
           if (data?.networkData && data?.networkData?.interfaces) {
             Object.values(data.networkData.interfaces || {}).map((iface: any) => {
@@ -75,8 +74,8 @@ const App = () => {
           }
 
 
-          setUpdatedDataJson(updatedData || '');
-          seDataJson(data || '')
+          setUpdatedDataJson(updatedData || null);
+          seDataJson(data || null)
           setInitError(false)
 
           intervalId.current = window.setInterval(updateData, 1500);
