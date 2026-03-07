@@ -56,10 +56,6 @@ nav .icons{
     width: fit-content;
 }
 
-nav .icons:hover{
-    background-color: rgba(255,255,255,0.1);
-}
-
 nav .icons > a > p{
     display:none;
 }
@@ -140,10 +136,6 @@ nav .documentationNav:hover{
         transition: background-color .5s ease, right .5s ease;
     }
 
-    nav .icons:hover{
-        background-color: rgba(217, 217, 217, 0.5);
-    }
-
     nav .icons > a{
         background-color: rgba(217, 217, 217, 0.5);
         transform: scale(1.1);
@@ -171,5 +163,26 @@ nav .documentationNav:hover{
 
     nav .icons > a:hover{
         transform: scale(1.2);
+    }
+}
+
+@media (prefers-color-scheme: dark){
+    nav {
+        background-color: #141414;
+    }
+
+    nav a{
+        color: white;
+    }
+
+    nav .icons > a > *{
+        filter: brightness(70);
+    }
+
+    nav .icons > *,
+    nav a,
+    nav .menuButton{
+        background-color: rgba(50, 50, 50, 0.5) !important;
+        box-shadow: 0 0 5px rgba(255, 255, 255,0.1);
     }
 }

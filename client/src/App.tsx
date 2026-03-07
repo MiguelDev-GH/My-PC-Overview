@@ -1,9 +1,11 @@
 import React, { useEffect, useState, useRef } from "react"
-import { Cpu, Gpu, MemoryStick, HardDrive, LayoutDashboard, AppWindow, Computer, Cable, Wifi, UsersRound, Cog, Flame, Fan, CloudRain } from 'lucide-react'
+import { Cpu, Gpu, MemoryStick, HardDrive, LayoutDashboard, AppWindow, Computer, Cable, Wifi, UsersRound, Cog, Flame, Fan } from 'lucide-react'
 import NavBar from "./components/NavBar.tsx"
 import "./App.css"
 
 const App = () => {
+
+  const [lightTheme,setLightTheme] = useState(window.matchMedia('(prefers-color-scheme: light)').matches)
 
   const [dataJson, seDataJson] = useState<any>(null)
   const [updatedDataJson, setUpdatedDataJson] = useState<any>(null)
@@ -176,7 +178,7 @@ const App = () => {
 
     return (
       <div key={index} style={{ marginLeft, marginBottom: '2px' }}>
-        <b style={{ fontSize }}>{key}:</b> <span style={{ color: '#333' }}>{String(value)}</span>
+        <b style={{ fontSize }}>{key}:</b> <span style={{ color: lightTheme ? '#333' : '#999' }}>{String(value)}</span>
       </div>
     );
   });
@@ -300,7 +302,7 @@ const App = () => {
                       <h2>Temperature</h2>
                       <p><Flame />{temperatureGpu} °C</p>
                     </div>
-                    : <p style={{textAlign:'center', color:"rgba(100,0,0,1"}}>Not possible to show the Temperature</p>
+                    : <p className="ErrorMessage">Not possible to show the Temperature</p>
                     }
 
                     
@@ -320,14 +322,14 @@ const App = () => {
                       <p><span style={{color:'#444444'}}>{memoryUsed} / {memoryTotal} <b>MB </b></span></p> 
 
                     </div>
-                    : <p style={{textAlign:'center', color:"rgba(100,0,0,1"}}>Not possible to show VRAM</p>
+                    : <p className="ErrorMessage">Not possible to show VRAM</p>
                     }
 
                   </div>
 
 
                     {(!(memoryUsed && memoryTotal) || !temperatureGpu) &&
-                      <a href="https://google.com" target="_blank" style={{position:'relative', width:'100%', boxSizing:'border-box', textAlign:"center", color:"blue"}}>
+                      <a href="https://migueldev-gh.github.io/My-PC-Overview/#/documentation" target="_blank" style={{position:'relative', width:'100%', boxSizing:'border-box', textAlign:"center", color:"blue"}}>
                         <p style={{textDecoration:"underline"}}>Error? Verify documentation</p>
                       </a>
                     }
