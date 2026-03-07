@@ -28,7 +28,7 @@ const NavBar = () => {
         } as React.CSSProperties} onClick={()=>setAtivo(false)} ></div>}
             
             
-        {!mobile && <a href="https://github.com/MiguelDev-GH/My-PC-Overview" target='blank' className="documentationNav"><BookOpenText/> Documentation </a>}
+        {!mobile && <a href="https://migueldev-gh.github.io/My-PC-Overview/#/documentation" target='blank' className="documentationNav"><BookOpenText/> Documentation </a>}
 
         <Menu className='menuButton' onClick={menuActive}/>
 
