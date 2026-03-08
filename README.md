@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="github/PC-OVERVIEW.png" alt="PC-Overview" width="300">
+</p>
+
 # My PC Overview
 
 **My PC Overview** is a powerful and intuitive application designed to provide a comprehensive look at your computer's hardware and software specifications in real-time. Built with a modern tech stack, it offers a clean dashboard to monitor everything from CPU temperatures to storage health.
