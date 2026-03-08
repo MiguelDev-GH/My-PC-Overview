@@ -2,8 +2,7 @@ const express = require("express")
 const path = require("path")
 const open = require("open")
 const app = express()
-
-const { askForPort } = require("./portVerification.js")
+const server = require('net')
 
 const cors = require('cors');
 app.use(cors())
@@ -37,15 +36,13 @@ app.get('/*splat', (req, res) => {
   res.sendFile(path.join(__dirname, "client", "index.html"));
 });
 
-async function init() {
+function init(PORT) {
 
-    const PORT = await askForPort();
-
-    app.listen(PORT, async ()=>{
-
-        console.log("PC Overview opening... \n")
-
-        console.clear()
+    // 1. Guardamos o servidor na constante 'server'
+    const server = app.listen(PORT, async () => {
+        
+        console.log("PC Overview opening... \n");
+        console.clear();
         console.log(`========================================== \n`);
         console.log(`    Server running at http://localhost:${PORT}`);
         console.log(`    DON'T CLOSE THIS WINDOW!`);
@@ -54,12 +51,23 @@ async function init() {
         console.log(`    To stop the application, close this window or terminate the process.`);
 
         try {
-                await open(`http://localhost:${PORT}`);
+            await open(`http://localhost:${PORT}`);
         } catch (err) {
-                console.log("ERROR: Could not open localhost in browser.\n");
-                console.log(err)
+            console.log("ERROR: Could not open localhost in browser.\n");
+            console.log(err);
         }
-    })   
+    });   
+
+    // 2. Escutador de erro FORA do callback de sucesso
+    server.on('error', (err) => {
+        if (err.code === 'EADDRINUSE') {
+            console.log(`⚠️  Port ${PORT} is busy. Trying port ${PORT + 1}...`);
+            // Chama a si mesma (init) para tentar a próxima porta!
+            init(PORT + 1); 
+        } else {
+            console.error('❌ Unexpected error trying to start the server:', err);
+        }
+    });
 }
 
-init()
+init(3000)
