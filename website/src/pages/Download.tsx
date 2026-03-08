@@ -24,7 +24,7 @@ const Download = () => {
                     <img src={WindowsLogo} />
                     <div>
                         <h2>Windows</h2>
-                        <div><p>64bits</p> <a href="../executables/mpco-win-x64.exe" download="PC Overview.exe"><button><ArrowDownToDot /></button></a></div>
+                        <div><p>64bits</p> <a href="../executables/pc-overview.exe" download="PC_Overview.exe"><button><ArrowDownToDot /></button></a></div>
                     </div>
                 </div>
                 
