@@ -1,4 +1,4 @@
-import { DownloadIcon, ArrowDownToDot } from "lucide-react"
+import { DownloadIcon, ArrowDownToDot, Copy } from "lucide-react"
 import WindowsLogo from "../assets/windowsLogo.png"
 import MacOsLogo from "../assets/macOsLogo.png"
 import LinuxLogo from "../assets/linuxLogo.png"
@@ -37,6 +37,23 @@ const Download = () => {
                     <div>
                         <h2>Linux & Mac</h2>
                         <code>curl -sL https://raw.githubusercontent.com/MiguelDev-GH/My-PC-Overview/main/server/install.sh | sudo bash</code>
+                        <Copy className="copyIcon" onClick={(e)=>{
+                            navigator.clipboard.writeText("curl -sL https://raw.githubusercontent.com/MiguelDev-GH/My-PC-Overview/main/server/install.sh | sudo bash")
+
+                            e.currentTarget.animate([
+                                { 
+                                    transform: 'scale(1.4)',
+                                    backgroundColor:"black",
+                                    color:'white'
+                                },
+                                { transform: 'scale(1.3)' }
+                            ], {
+                                duration: 300,        
+                                iterations: 1,        
+                                easing: 'ease-in-out' 
+                            });
+
+                        }}/>
                     </div>
                 </div>
             </div>
