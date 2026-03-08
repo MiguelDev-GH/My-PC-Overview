@@ -2,6 +2,12 @@
 
 **My PC Overview** is a powerful and intuitive application designed to provide a comprehensive look at your computer's hardware and software specifications in real-time. Built with a modern tech stack, it offers a clean dashboard to monitor everything from CPU temperatures to storage health.
 
+## Installation and initialization
+
+To the installation you can check the PC-Overview website [here](https://migueldev-gh.github.io/My-PC-Overview/#/download).
+
+Check website documentation to see details about initialization, [here](https://migueldev-gh.github.io/My-PC-Overview/#/documentation).
+
 ## 🚀 Features
 
 - **Real-time Monitoring**: Live updates temperature, RAM usage, and VRAM usage.
