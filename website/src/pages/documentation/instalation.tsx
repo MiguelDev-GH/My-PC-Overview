@@ -45,6 +45,12 @@ const Installation = () => {
             <p>
                 A: This usually happens for two reasons: either the terminal window was accidentally closed, or the application lacks the necessary system permissions. Try restarting the application as an Administrator (Windows) or using <code>sudo pc-overview</code> (Linux/Mac) if standard execution fails to read the sensors.
             </p>
+
+            <h1>Unistalling in Linux & Mac</h1>
+
+            <p>To <strong>unistall</strong> the application, the user need to run the follow command: </p>
+            <code>curl -sL https://raw.githubusercontent.com/MiguelDev-GH/My-PC-Overview/main/server/uninstall.sh | sudo bash</code>
+
         </div>
     );
 }
