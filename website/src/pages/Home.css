@@ -98,7 +98,7 @@ main{
 
 .grids{
   display: grid;
-  grid-template-columns:repeat(auto-fit, minmax(400px, 1fr));
+  grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));
   gap: 40px;
   width: 75%;
 }
@@ -166,6 +166,10 @@ code{
       padding: 0 20px;
   }
 
+  .about{
+    padding: 0;
+  }
+
   .head{
     flex-direction: column;
     align-items: center;
@@ -178,9 +182,13 @@ code{
 
   .head > div > p {
     overflow-x: visible; 
-    padding: 0 20px; 
-    word-break: break-word;
+    padding: 10px; 
+    /* word-break: break-word; */
     font-size: 55px;
+  }
+
+  code {
+    padding: 0;
   }
 
 }

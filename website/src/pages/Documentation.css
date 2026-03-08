@@ -71,7 +71,7 @@ aside > section > p:hover{
 
     aside{
         position: relative;
-        height: 30px;
+        height: fit-content;
         padding: 0;
         width: 100%;
         align-items: center;

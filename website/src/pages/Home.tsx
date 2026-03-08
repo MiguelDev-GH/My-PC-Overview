@@ -26,7 +26,7 @@ const Home = () => {
             and real-time resource usage, all running offline and securely on your own PC.
           </div>
 
-          <h2>What you can monitor</h2>
+          <h2 style={{textAlign:'center'}}>What you can monitor</h2>
 
           <div className="grids">
               <div>
