@@ -36,23 +36,10 @@ node app.js
 EOF
 sudo chmod +x /usr/local/bin/$APP_NAME
 
-# Verifica se é Linux (Linux) ou Mac (Darwin)
+# 4. Create Desktop Entry (Verifica se é Linux ou Mac)
 if [ "$(uname)" == "Linux" ]; then
-    # 4. Create Desktop Entry
     echo "🖥️ Creating desktop shortcut..."
     sudo bash -c "cat > /usr/share/applications/$APP_NAME.desktop" <<EOF
-    [Desktop Entry]
-    Version=1.0
-    Type=Application
-    ...
-EOF
-else
-    
-# 4. Create Desktop Entry
-if [ "$(uname)" == "Linux" ]; then
-
-echo "🖥️ Creating desktop shortcut..."
-sudo bash -c "cat > /usr/share/applications/$APP_NAME.desktop" <<EOF
 [Desktop Entry]
 Version=1.0
 Type=Application
@@ -66,7 +53,6 @@ EOF
 else
     echo "🍏 macOS detected: Skipping Linux desktop shortcut creation."
 fi
-
 
 echo "✅ Installation completed successfully!"
 echo "You can now launch the app by typing '$APP_NAME' in your terminal."
