@@ -1,6 +1,6 @@
-const Instalation = () => {
+const Installation = () => {
     return (
-        <div className="Instalation content">
+        <div className="content">
             <h1>Windows Installation</h1>
             <p>
                 For Windows users, <strong>PC Overview</strong> is distributed as a standalone executable (<code>.exe</code>). 
@@ -49,4 +49,4 @@ const Instalation = () => {
     );
 }
 
-export default Instalation;
+export default Installation;
