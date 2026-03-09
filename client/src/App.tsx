@@ -280,7 +280,7 @@ const App = () => {
               
               return (
               
-              <div key={index}>
+              <div key={index} className="hardwareItem">
                 <h3>GPU {gpuQuantity > 1 && index + 1} - {data.bus} </h3>
                 {data.name &&<p><strong>Name</strong>: {data.name}</p>}
                 {data.vendor &&<p><strong>Vendor</strong>: {data.vendor}</p>}
@@ -438,7 +438,7 @@ const App = () => {
                 <h3>{index + 1}</h3>
                 {data.bank &&<p><strong>Slot placed in motherboard</strong>: {data.bank}</p>}
                 {data.manufacture &&<p><strong>Brand</strong>: {data.manufacturer}</p>}
-                {data.size &&<p><strong>Size</strong>: {data.size / (1024 ** 2)} MB</p>}
+                {data.size &&<p><strong>Size</strong>: {(data.size / (1024 ** 2)).toFixed(0)} MB</p>}
                 {data.clockSpeed &&<p><strong>Frequency in use</strong> (Clock Speed): {data.clockSpeed} Mhz</p>}
                 {data.formFactor &&<p><strong>Form Factor</strong>: {data.formFactor}</p>}
 

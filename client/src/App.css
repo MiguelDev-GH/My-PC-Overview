@@ -137,6 +137,9 @@ strong, b{
   overflow-wrap: anywhere; 
   word-wrap: break-word;
   box-sizing: border-box;
+  text-wrap: wrap;
+  white-space: wrap;
+  width: 100%;
 }
 
 .details > h2{
@@ -255,7 +258,7 @@ strong, b{
 .ramMemoryRepresentation .percentageText{
   position: relative;
   z-index: 2;
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: 200;
   color: #353535;
   transform: scaleX(-1); 
@@ -299,6 +302,17 @@ strong, b{
   right: 0;
   height: 100%;
   top: 0;
+}
+
+.hardwareItem {
+  position: relative;
+  margin-bottom: 20px; 
+  padding-bottom: 15px; 
+}
+
+.hardwareItem:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
 }
 
 .diskRepresentation {
@@ -371,14 +385,13 @@ summary:hover{
   .details > div,
   .cpu, .users, .software, .connection, .disks, .memory, .gpu, .details > h2 {
     grid-column: span 1 !important;
-    width: 100%; /* Garante que o card ocupe apenas a largura da coluna */
+    width: 100%;
     box-sizing: border-box;
-    word-wrap: break-word; /* Força a quebra de palavras longas */
+    word-wrap: break-word;
     overflow-wrap: break-word;
     padding: 0 10px;
   }
 
-  /* Ajuste para o conteúdo da conexão que você colocou como row anteriormente */
   .connection .content {
     flex-direction: column;
     align-items: flex-start;
