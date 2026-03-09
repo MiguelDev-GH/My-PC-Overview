@@ -50,12 +50,12 @@ function init(PORT) {
         console.log(`==========================================\n`);
         console.log(`    To stop the application, close this window or terminate the process.`);
 
-        // try {
-        //     await open(`http://localhost:${PORT}`);
-        // } catch (err) {
-        //     console.log("ERROR: Could not open localhost in browser.\n");
-        //     console.log(err);
-        // }
+        try {
+             await open(`http://localhost:${PORT}`);
+        } catch (err) {
+             console.log("ERROR: Could not open localhost in browser.\n");
+             console.log(err);
+        }
     });   
     
     server.on('error', (err) => {
