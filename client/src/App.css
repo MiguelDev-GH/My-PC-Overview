@@ -145,7 +145,6 @@ strong, b{
 .details > h2{
   grid-column: span 3;
   text-align: center;
-  padding-top: 50px;
 }
 
 .cpu{
@@ -218,6 +217,21 @@ strong, b{
   top: 0;
 }
 
+.cpuTemperature{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.cpuTemperature *:not(h2){
+  text-shadow: #813f01 0 0 5px;
+  color: #813f01;
+}
+
+.cpuTemperature p{
+  font-size: 2rem;
+}
 
 .gpuMemory,
 .ramMemory{
@@ -469,6 +483,11 @@ summary:hover{
   .ErrorMessage{
     color: rgba(255,10,10,1);
     font-weight: 300;
+  }
+
+  .cpuTemperature *:not(h2){
+    text-shadow: #c56104 0 0 5px;
+    color: #c56104;
   }
 
 }

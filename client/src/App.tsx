@@ -258,6 +258,26 @@ const App = () => {
             {cpu.physicalCores &&<p><strong>Cores</strong>: {cpu.physicalCores}</p>}
             {cpu.cores &&<p><strong>Threads</strong>: {cpu.cores}</p>}
             {cpu.speed &&<p><strong>Speed</strong>: {(cpu.speed || 0).toFixed(2)} @GHz</p>}
+
+            { updatedDataJson ? <span>
+
+              <div className="representations">
+
+              {updatedDataJson.cpu?.temp?.main ? <div className="cpuTemperature">
+                      <h2>Temperature</h2>
+                      <p><Flame />{updatedDataJson.cpu?.temp?.main} °C</p>
+                    </div>
+                    : <p className="ErrorMessage">Not possible to show the Temperature</p>
+                    }
+
+              </div>
+
+            </span>
+
+            : <p>Loading real-time data...</p>
+
+            }
+
           </div>
 
         </div>
