@@ -4,6 +4,7 @@ import Start from "./documentation/start"
 import GettingStarted from "./documentation/gettingstarted"
 import Errors from "./documentation/errors"
 import Installation from "./documentation/instalation"
+import Dependencies from "./documentation/dependencies"
 
 const Documentation = () => {
 
@@ -37,11 +38,19 @@ const Documentation = () => {
                     borderRadius: tab === "Installation" ? '5px' : '5px 5px 0 0'
                     }}>Installation & Initialization</p>
 
+                <p onClick={()=>setTab("Dependencies")} style={{
+                    backgroundColor: tab === "Dependencies" ? 'rgba(0,0,0,.1)' : 'rgba(0,0,0,0)',
+                    borderBottomColor: tab === "Dependencies" ? 'rgba(0,0,0,0)' : 'rgba(0,0,0,.3)',
+                    borderRadius: tab === "Dependencies" ? '5px' : '5px 5px 0 0'
+                    }}>Dependencies</p>
+
                 <p onClick={()=>setTab("Errors")} style={{
                     backgroundColor: tab === "Errors" ? 'rgba(0,0,0,.1)' : 'rgba(0,0,0,0)',
                     borderBottomColor: tab === "Errors" ? 'rgba(0,0,0,0)' : 'rgba(0,0,0,.3)',
                     borderRadius: tab === "Errors" ? '5px' : '5px 5px 0 0'
                     }}>Possible errors</p>
+
+
             </section>
         </aside>
 
@@ -49,6 +58,7 @@ const Documentation = () => {
             {tab === "Start" && <Start/>}
             {tab === "GettingStarted" && <GettingStarted/>}
             {tab === "Installation" && <Installation/>}
+            {tab === "Dependencies" && <Dependencies/>}
             {tab === "Errors" && <Errors/>}
         </div>
 
