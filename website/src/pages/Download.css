@@ -15,8 +15,12 @@ body{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    justify-content: center;
+    align-items: end;
 
-    gap: 100px;
+    gap: 200px;
+
+    flex-wrap: wrap;
 }
 
 main {
@@ -161,12 +165,8 @@ main {
 
 @media screen and (width <= 800px) {
 
-    .Download{
-        flex-direction: column;
-    }
-
     .home > span > h1{
-        font-size: 10vw;
+        font-size: 10dvw;
     }
 
     .downloads{
