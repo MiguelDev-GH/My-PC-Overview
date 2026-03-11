@@ -3,9 +3,13 @@ const Dependencies = () => {
         <div className='content'>
             <h1>System Requirements & Dependencies</h1>
             <p>
-                Because <strong>PC Overview</strong> is distributed as a standalone, compiled executable (<code>.exe</code>). You only need to have:
+                <strong>PC Overview</strong> is distributed as a standalone, compiled executable (<code>.exe</code>) on <b>Windows</b>. 
+
+                <br/>In <b>Mac</b> & <b>Linux</b>, is necessary:
+
                 <ul>
                     <li>Node.JS</li>    
+                    <li>Git</li> 
                 </ul> 
                 
                 Otherwise you <strong>do not</strong> need to install Python, React, or any complex dependencies to run it. Everything the application needs is already bundled inside.
