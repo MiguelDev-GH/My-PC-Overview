@@ -8,6 +8,29 @@ REPO_URL="https://github.com/MiguelDev-GH/My-PC-Overview.git"
 
 echo "🚀 Starting My PC Overview installation..."
 
+echo "🔍 Checking system requirements..."
+
+if ! command -v git &> /dev/null; then
+    echo "❌ Error: Git is not installed."
+    echo "👉 Please install Git and try again."
+    exit 1
+fi
+
+if ! command -v node &> /dev/null; then
+    echo "❌ Error: Node.js is not installed."
+    echo "👉 Please install Node.js (v18 or higher recommended) and try again."
+    exit 1
+fi
+
+if ! command -v npm &> /dev/null; then
+    echo "❌ Error: npm is not installed."
+    echo "👉 Please install npm and try again."
+    exit 1
+fi
+
+echo "✅ All requirements met!"
+echo "----------------------------------------"
+
 # 1. Clone or Update files
 echo "common: Cleaning old files..."
 sudo rm -rf $INSTALL_DIR
