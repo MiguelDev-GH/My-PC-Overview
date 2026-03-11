@@ -1,7 +1,7 @@
-const si = require('systeminformation');
-const os = require('os');
+import si from 'systeminformation'
+import os from "os"
 
-module.exports.OsAllDetails = async () => {
+export async function OsAllDetails(){
     const rawData = await si.get({
         // Grupo Sistema
         system: '*',
@@ -103,7 +103,7 @@ module.exports.OsAllDetails = async () => {
     };
 };
 
-module.exports.getQuickUpdate = async () => {
+export async function getQuickUpdate(){
     const rawData = await si.get({
         graphics:'controllers',
         cpuCurrentSpeed: '*',

@@ -224,13 +224,12 @@ strong, b{
   justify-content: center;
 }
 
-.cpuTemperature *:not(h2){
-  text-shadow: #813f01 0 0 5px;
-  color: #813f01;
-}
-
 .cpuTemperature p{
+  display: flex;
+  align-items: start;
   font-size: 2rem;
+  text-shadow: #0a5f02 0 0 5px;
+  color: #0a5f02;
 }
 
 .gpuMemory,
@@ -483,11 +482,6 @@ summary:hover{
   .ErrorMessage{
     color: rgba(255,10,10,1);
     font-weight: 300;
-  }
-
-  .cpuTemperature *:not(h2){
-    text-shadow: #c56104 0 0 5px;
-    color: #c56104;
   }
 
 }
