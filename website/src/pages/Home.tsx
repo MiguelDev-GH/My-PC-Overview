@@ -1,5 +1,5 @@
 import HomePic from "./../../../client/src/assets/PageInitTitle.png"
-import { Cpu, Gpu, MemoryStick, HardDrive, LayoutDashboard, Wifi, Server } from 'lucide-react'
+import { Cpu, Gpu, MemoryStick, HardDrive, LayoutDashboard, Wifi, Server, ChevronDown } from 'lucide-react'
 import "./Home.css"
 
 const Home = () => {
@@ -11,6 +11,8 @@ const Home = () => {
             <p>Your real-time browser, hardware monitorer</p>
           </div>  
         </div>
+
+        <ChevronDown className="downArrow" size={40}/>
 
         <div className="about"> 
           <div className="overview">

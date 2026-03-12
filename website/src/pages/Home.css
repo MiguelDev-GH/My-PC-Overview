@@ -23,10 +23,27 @@ main{
   overflow-y: auto;
 }
 
+.downArrow{
+  position: absolute;
+  top: 86dvh;
+  opacity: .5;
+  animation: downArrowAnimation 1s ease infinite;
+}
+
+@keyframes downArrowAnimation {
+  0%{
+    transform: translateY(10%);
+  } 50% {
+    transform: translateY(-10%);
+  } 100% {
+    transform: translateY(10%);
+  }
+}
+
 .head{
   position: relative;
   display: flex;
-  height: calc(100vh - 70px);
+  height: calc(101vh - 70px);
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
